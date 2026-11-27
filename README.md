@@ -8,6 +8,7 @@
 | 项 | 内容 |
 | :--- | :--- |
 | 项目代号 | 枢元（Shuyuan） |
+| 仓库标识 | `Shuyuan-AgentOS`（GitHub slug；远程仓库名在 GitHub Settings 重命名后与此一致） |
 | 技术基线 | OpenHarmony（标准系统） + 自研系统服务（SA） |
 | 目标硬件 | 龙芯 3A6000，CPU 架构 loongarch64 |
 | 宿主构建环境 | Ubuntu 22.04 LTS（物理机或 Win11 + WSL2） |
