@@ -1,6 +1,6 @@
 {
     "name": "@ohos/jingzhi",
-    "description": "Shuyuan Agent OS - Jingzhi governance system ability (SA 9905): authorization check and audit",
+    "description": "Shuyuan AgentOS - Jingzhi governance system ability (SA 9905): authorization check and audit",
     "version": "5.1.0",
     "license": "Apache-2.0",
     "publishAs": "code-segment",

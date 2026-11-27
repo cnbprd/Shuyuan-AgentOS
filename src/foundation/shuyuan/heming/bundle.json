@@ -1,6 +1,6 @@
 {
     "name": "@ohos/heming",
-    "description": "Shuyuan Agent OS - Heming collaboration system ability (SA 9903): multi-agent and skill orchestration",
+    "description": "Shuyuan AgentOS - Heming collaboration system ability (SA 9903): multi-agent and skill orchestration",
     "version": "5.1.0",
     "license": "Apache-2.0",
     "publishAs": "code-segment",

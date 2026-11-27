@@ -1,6 +1,6 @@
 {
     "name": "@ohos/lingtai",
-    "description": "Shuyuan Agent OS - Lingtai nexus system ability (SA 9901): intent routing, agent registry, skill dispatch",
+    "description": "Shuyuan AgentOS - Lingtai nexus system ability (SA 9901): intent routing, agent registry, skill dispatch",
     "version": "5.1.0",
     "license": "Apache-2.0",
     "publishAs": "code-segment",

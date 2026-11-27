@@ -1,6 +1,6 @@
 {
     "name": "@ohos/jianguan",
-    "description": "Shuyuan Agent OS - Jianguan perception system ability (SA 9902): environment and task state snapshot",
+    "description": "Shuyuan AgentOS - Jianguan perception system ability (SA 9902): environment and task state snapshot",
     "version": "5.1.0",
     "license": "Apache-2.0",
     "publishAs": "code-segment",

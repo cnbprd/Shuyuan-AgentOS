@@ -1,6 +1,6 @@
 {
     "name": "@ohos/lingzhong",
-    "description": "Shuyuan Agent OS - Lingzhong closure system ability (SA 9904): task lifecycle closure and final state",
+    "description": "Shuyuan AgentOS - Lingzhong closure system ability (SA 9904): task lifecycle closure and final state",
     "version": "5.1.0",
     "license": "Apache-2.0",
     "publishAs": "code-segment",
