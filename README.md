@@ -73,7 +73,7 @@
 | [`10-进树核对清单.md`](10-进树核对清单.md) | 阶段零上机逐项打勾清单：配置一致性、构建登记、IPC 序列化、属性、板级、观测判据 |
 | [`11-仓库上传通道.md`](11-仓库上传通道.md) | 稳定上传路径：SSH over 443 推送、gh CLI 发布资产、Actions 兜底与失败处置 |
 | [`12-QEMU验证线.md`](12-QEMU验证线.md) | 开发板到货前的 QEMU 最小闭环：对上传草案的五处修正、6–10 天阶段表、产品登记与 12 项进树核对 |
-| [`13-认证与合规清单.md`](13-认证与合规清单.md) | 已完成的开源合规项、需主体资料的软著/兼容性认证、可选提交签名 |
+| [`13-认证与合规清单.md`](13-认证与合规清单.md) | 已完成的开源合规项、外部兼容性认证（软著已决策暂不申请）、可选提交签名 |
 
 ## 4.1 源码骨架
 
@@ -135,4 +135,4 @@ SELinux 策略骨架与「缺失即静默失败」的三层判据见 `src/founda
 - 贡献流程、DCO 签署与代码要求见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
 - 社区行为准则见 [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)；安全问题按 [`SECURITY.md`](SECURITY.md) 私下报告，不要开公开 Issue。
 - 提交前本地检查：Windows 运行 `pwsh scripts/check-compliance.ps1`；Linux 运行 `bash scripts/check-compliance.sh`。CI 在每次 push/PR 时执行同一套检查。
-- 需要主体资料、当前无法代办的外部认证（软著、OpenHarmony/龙芯兼容性、OpenSSF Badge）见 [`13-认证与合规清单.md`](13-认证与合规清单.md)。
+- 外部认证清单见 [`13-认证与合规清单.md`](13-认证与合规清单.md)：软著已决策暂不申请；OpenHarmony/龙芯兼容性、OpenSSF Badge 等具备条件后再评估。
