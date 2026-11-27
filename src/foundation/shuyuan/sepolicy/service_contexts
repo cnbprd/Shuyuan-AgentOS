@@ -1,9 +1,12 @@
-# 枢元 SA 标签映射草稿（9901–9905）
-# ⚠ 待核对：键的写法（数字 SA ID / 服务名）与文件归属位置以目标源码树 service_contexts 原文为准。
-# ⚠ 缺失任一行的后果：该 SA 落入 u:object_r:default_service:s0，被 neverallow 禁止，跨进程 GetSystemAbility 静默失败。
+# 枢元 SA 标签映射（键为数字 SA ID，值为 sa_<层> 标签）
+# 依据：security_selinux/sepolicy/base/public/service_contexts 实际格式为
+#   180   u:object_r:sa_foundation_abilityms:s0
+#   200   u:object_r:sa_accountmgr:s0
+# 缺失本行时，SA 落入 u:object_r:default_service:s0；
+# domain.te 有 neverallow domain default_service:samgr_class *，跨进程获取会被拒。
 
-9901 u:object_r:lingtai_service:s0
-9902 u:object_r:jianguan_service:s0
-9903 u:object_r:heming_service:s0
-9904 u:object_r:lingzhong_service:s0
-9905 u:object_r:jingzhi_service:s0
+9901 u:object_r:sa_lingtai:s0
+9902 u:object_r:sa_jianguan:s0
+9903 u:object_r:sa_heming:s0
+9904 u:object_r:sa_lingzhong:s0
+9905 u:object_r:sa_jingzhi:s0

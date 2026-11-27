@@ -1,14 +1,26 @@
-# 灵台 9901 · 调度中枢域（骨架）
-# ⚠ 非成品：宏名与属性名需按目标源码树 system/sepolicy/public/te_macros、attributes 原文替换。
-# ⚠ 本文件当前只声明 type；未补 allow 前，进程在 enforcing 下必然被拦。
+# 灵台 9901 · 域与服务标签（依据 OpenHarmony security_selinux 实证模板）
+# 证据：type.te `type hidumper_service, sadomain, domain;`
+#       service.te `type sa_dfx_sys_hidumper_ability, sa_service_attr;`
+#       init.te `allow init accesstoken_service:process { rlimitinh siginh transition };`
+#       attributes `attribute sa_service_attr;` / `attribute sadomain;`
+#       domain.te `neverallow domain default_service:samgr_class *;`
 
-type lingtai_service, domain;
+# 进程域（cfg 的 secon: u:r:lingtai_service:s0）
+type lingtai_service, sadomain, domain;
 
-# ---- 进树待补（逐条按 avc: denied 回填，勿照抄 Android 策略）----
-# TODO 1 进程启动：init 域 → 本域的转换与 entrypoint（先确认 sample SA 用的宏名）
-# TODO 2 注册 SA：本域 → samgr 的 binder 调用与 SA 发布权限
-# TODO 3 客户端接入：客户端域 → 本域的 IPC 通信
-# TODO 4 系统属性：写 sys.shuyuan.lingtai.ready / sys.shuyuan.boot.complete（阶段二接入后）
-# TODO 5 服务对象标签：确认 service_contexts 中 9901 的 u:object_r: 是否复用本 type；
-#        若 OHOS 要求独立服务类型，在此补 type <层>_service_service, <属性待核实>;
-# TODO 6 若源码树确存在 SA 访问属性（传言为 sa_service_attr，公开渠道未核实），按 attributes 原文附加
+# 服务标签（service_contexts: 9901 -> u:object_r:sa_lingtai:s0）
+type sa_lingtai, sa_service_attr;
+
+# init 以 secon 拉起本域进程
+allow init lingtai_service:process { rlimitinh siginh transition };
+
+# entrypoint 是 /system/bin/sa_main
+allow lingtai_service samain_exec:file { entrypoint execute map read };
+
+# 向 samgr 注册/发布 SA
+allow lingtai_service samgr:binder { call transfer };
+allow lingtai_service sa_lingtai:samgr_class { get add };
+
+# 测试客户端（当前在 sh 域跑 demo_client；正式客户端按实际域名替换）
+allow sh sa_lingtai:samgr_class get;
+allow sh lingtai_service:binder { call transfer };

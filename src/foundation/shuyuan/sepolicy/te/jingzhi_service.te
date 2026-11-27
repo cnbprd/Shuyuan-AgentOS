@@ -1,12 +1,13 @@
-# 敬止 9905 · 治理审批域（骨架）
-# ⚠ 非成品：宏名与属性名以目标源码树 system/sepolicy 原文为准。
-# 治理域后续要读写审计记录，可能额外需要数据文件标签，待进树按实际存储路径补。
+# 敬止 9905 · 域与服务标签（模板同 lingtai，来源见该文件注释）
+# 治理域后续需要审计落盘时，再按实际路径补 file 标签与读写 allow。
 
-type jingzhi_service, domain;
+type jingzhi_service, sadomain, domain;
+type sa_jingzhi, sa_service_attr;
 
-# TODO 1 init → 本域启动转换（宏名待核对）
-# TODO 2 本域 → samgr 注册 SA 9905
-# TODO 3 客户端域 → 本域 IPC
-# TODO 4 服务对象标签类型是否复用本域（见 service_contexts）
-# TODO 5 审计落盘所需的文件标签与读写 allow（阶段二接入）
-# TODO 6 SA 访问属性（未核实，勿凭记忆写）
+allow init jingzhi_service:process { rlimitinh siginh transition };
+allow jingzhi_service samain_exec:file { entrypoint execute map read };
+allow jingzhi_service samgr:binder { call transfer };
+allow jingzhi_service sa_jingzhi:samgr_class { get add };
+
+allow sh sa_jingzhi:samgr_class get;
+allow sh jingzhi_service:binder { call transfer };

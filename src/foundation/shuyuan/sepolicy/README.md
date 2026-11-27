@@ -1,61 +1,71 @@
 # 枢元 SELinux 策略骨架
 
-> 定位：这是**待进树填充的骨架**，不是可直接编入 `system/sepolicy` 的成品。
-> 原因：OHOS 的宏名（`init_daemon_domain` 一类）、属性名（如传言的 `sa_service_attr`）与 `service_contexts` 的真实格式，均需以目标源码树原文为准；仓库侧无源码树，无法离线验证，故所有宏调用一律留作 TODO，不凭空写死。
+> 依据：`security_selinux` 仓库（OpenHarmony 主干）实证，2026-11-27 逐行核对。
+> 本目录可作 vendor policy 模板，但**类型名、放置位置、客户端域名仍需进树核对**。
 
-## 1. 为什么必须有这一层
+## 1. 实证到的关键规则
 
-`Publish(this)` 返回 `true` 不代表 SA 真的可用。三处缺失都会造成「注册看起来成功、跨进程拿不到」：
+| 事实 | 出处 |
+| :--- | :--- |
+| `sa_service_attr` 属性存在 | `sepolicy/base/public/attributes:82` |
+| `sadomain` 属性存在 | `sepolicy/base/public/attributes:108` |
+| 无 `sa_service_attr` 的服务不得进入 samgr | `domain.te:160` `neverallow * ~sa_service_attr:samgr_class ~list;` |
+| `default_service` 被彻底禁止 | `domain.te:171` `neverallow domain default_service:samgr_class *;` |
+| 进程域写法 | `type.te:49` `type hidumper_service, sadomain, domain;` |
+| 服务标签写法 | `service.te:220` `type sa_dfx_sys_hidumper_ability, sa_service_attr;` |
+| 映射写法（数字 SA ID） | `service_contexts` `1215 u:object_r:sa_dfx_sys_hidumper_ability:s0` |
+| init 以 secon 拉起 | `init.te:123` `allow init accesstoken_service:process { rlimitinh siginh transition };` |
+| `sadomain` 自带能力 | `sadomain.te`：`samain_exec` 的 entrypoint/execute、`samgr:binder { call transfer }`、`system_profile_file` 读 |
 
-| 缺失项 | 后果 | 表现 |
-| :--- | :--- | :--- |
-| `service_contexts` 无 9901 映射 | 落到 `u:object_r:default_service:s0`，被 neverallow 禁止 | `hidumper -s 9901` 空、`GetSystemAbility(9901)` 返回空，hilog 无异常 |
-| `cfg` 的 `secon` 与 `type.te` 的 type 不同名 | 进程无合法域 | `init` 拉起失败，日志只报启动失败，不指向 SELinux |
-| 服务标签不携带 SA 访问属性 | 即使映射存在，跨进程 IPC 授权仍被拒 | 客户端 `SendRequest` 返回错误码，`avc: denied` 指向 binder |
+三点结论：
 
-## 2. 落地位置（进树时按实际版本选一处）
+1. **进程域**必须 `type <层>_service, sadomain, domain;`——只写 `domain` 会被 `neverallow` 挡在 SAMGR 之外。
+2. **服务标签**是**另一个** type，带 `sa_service_attr`（命名惯例 `sa_<名字>`）；`service_contexts` 指向它，而不是进程域。
+3. **init 拉起**要显式 `allow init <层>_service:process { rlimitinh siginh transition }`；`sa_main` 作为 entrypoint 的 execute 权限由 `sadomain` 与 `.te` 共同覆盖。
 
-- 平台公共策略：`system/sepolicy/public/`（域声明）、`system/sepolicy/public/service_contexts`
-- 产品/厂商策略：`vendor/<厂商>/<产品>/sepolicy/`（自有域的域声明与上下文）
+## 2. 本目录文件
 
-规则的归属以 sample SA 的策略放置方式为准；**不要**把自定义域写进 `system/sepolicy/private/`。
+| 文件 | 作用 |
+| :--- | :--- |
+| `service_contexts` | 9901–9905 → `sa_<层>` 映射 |
+| `te/<层>_service.te` | 进程域、服务标签、init 转换、samgr 注册、测试客户端访问 |
 
-## 3. 本目录文件
+**不再提供 `file_contexts`**：基础策略已覆盖本项目所需路径——`sepolicy/base/system/file_contexts` 把 `/system/lib64(/.*)?` 标为 `system_lib_file`、`/system/profile(/.*)?` 标为 `system_profile_file`，`sadomain` 已有读权限。此前草稿里自造的 `<层>_service_file` 类型是错的，已删除。
 
-| 文件 | 内容 | 状态 |
-| :--- | :--- | :--- |
-| `service_contexts` | 9901–9905 的标签映射草稿 | 键格式待核对 |
-| `file_contexts` | 库与 profile 的文件标签草稿 | 类型声明待补 |
-| `te/<层>_service.te` | 五个域的 type 声明 + 待补授权清单 | 宏调用待填充 |
+## 3. 关键前提：当前产品根本不构建 SELinux
 
-## 4. 开发期策略：先 permissive
+`build/config/BUILDCONFIG.gn:194-197`：
 
-1. 进树后先只声明五个 `type`，不加任何 allow，直接编进镜像；
-2. 把五个域置 permissive（写法以源码树 `permissive` / `permissive_or_unconfined` 宏为准）；
-3. 启动后抓全量拒绝：
-
-```sh
-dmesg | grep "avc: denied"
-hilog | grep -i "avc"
+```
+if (defined(product_build_config.build_selinux)) {
+  build_selinux = product_build_config.build_selinux
+} else {
+  build_selinux = false
+}
 ```
 
-4. 按 `avc: denied { perm } for scontext=... tcontext=... tclass=...` 逐条补 `allow`，补完一条复测一次；
-5. 全链路（`shuyuan_demo_client` 八步）跑通后再切 enforcing。
+即**未显式声明就是 false**。实测：`ls3a5000` 写死 `false`，`qemu-loongarch64-linux-min` 未声明（等价 false）。
 
-第一次启动不追求 enforcing——enforcing 下缺一条规则就是静默失败，排查成本远高于逐条补。
+由此推出两条：
 
-## 5. 首次启动只验三件事
+- QEMU 首启如果 `hidumper -s 9901` 为空，**先不要怀疑 SELinux**——镜像里没有策略；
+- 要验证本目录的策略，必须把产品 `config.json` 的 `build_selinux` 置 `true`，并确认 `selinux_adapter` 部件仍在 subsystems 中。验证 SELinux 是**第二轮**上机，不是首轮。
 
-```sh
-ls /system/profile/ | grep 9901          # profile 进了镜像
-hilog | grep -i "lingtai.*Publish"       # Publish 有明确结果
-hidumper -s 9901                         # samgr 真能拿到 SA
-```
+## 4. 落地位置
 
-三条同时通过，才说明「存在性」成立；任一失败先去查 SELinux 与配置，不要调业务接口。
+- 平台公共策略（type 声明）：`system/sepolicy` 对应的 `public/` 目录；
+- 自有域与映射：产品/厂商策略目录（`vendor/<厂商>/<产品>/sepolicy/`），随产品 `config.json` 的策略构建开关生效。
 
-## 6. 未核实项（禁止当事实用）
+## 5. 验证顺序
 
-- `sa_service_attr` 这一属性名：公开检索无佐证，需在 `system/sepolicy/public/attributes` 原文确认；
-- `service_contexts` 是否以数字 SA ID 为键：需对照目标版本 samgr 相关策略；
-- 服务对象标签是否复用进程域 type，还是需独立的 `<层>_service_service` 类型：以 sample 为准。
+1. 首轮：`build_selinux=false`，只验「进程起得来、SA 能注册、IPC 通」——此时无策略拦截；
+2. 第二轮：`build_selinux=true`，重编镜像；
+3. 若启动失败，先看 `dmesg | grep avc` 与 `hilog | grep -i avc`，按 `scontext/tcontext/tclass` 逐条补；
+4. 开发期可先给五个域加 permissive，跑通后切 enforcing；
+5. 首轮三验仍是：`ls /system/profile/ | grep 990X`、`hilog | grep -i "Publish"`、`hidumper -s 990X`。
+
+## 6. 尚未核实
+
+- `sa_<层>` 这类服务标签能否定义在 vendor 策略（部分版本对 `sa_service_attr` 的声明位置有限制）；
+- 测试客户端跑在 `sh` 域这一假设（`demo_client` 由 hdc shell 启动时成立，装成独立可执行则需自己的域）；
+- 9901–9905 是否落在厂商 SA ID 保留段、与目标版本原生服务是否撞号（需在源码树 `sa_profile` 全量比对）。

@@ -1,10 +1,12 @@
-# 和鸣 9903 · 协作机制域（骨架）
-# ⚠ 非成品：宏名与属性名以目标源码树 system/sepolicy 原文为准。
+# 和鸣 9903 · 域与服务标签（模板同 lingtai，来源见该文件注释）
 
-type heming_service, domain;
+type heming_service, sadomain, domain;
+type sa_heming, sa_service_attr;
 
-# TODO 1 init → 本域启动转换（宏名待核对）
-# TODO 2 本域 → samgr 注册 SA 9903
-# TODO 3 客户端域 → 本域 IPC
-# TODO 4 服务对象标签类型是否复用本域（见 service_contexts）
-# TODO 5 SA 访问属性（未核实，勿凭记忆写）
+allow init heming_service:process { rlimitinh siginh transition };
+allow heming_service samain_exec:file { entrypoint execute map read };
+allow heming_service samgr:binder { call transfer };
+allow heming_service sa_heming:samgr_class { get add };
+
+allow sh sa_heming:samgr_class get;
+allow sh heming_service:binder { call transfer };

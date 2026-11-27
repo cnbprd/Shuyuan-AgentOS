@@ -84,7 +84,7 @@ src/foundation/shuyuan/
 ├── lingzhong/         # 令终 9904 任务闭环
 ├── jingzhi/            # 敬止 9905 治理审批
 ├── init/              # 子系统级统一启动时序 cfg（载阳）
-├── sepolicy/          # SELinux 策略骨架（五域 type 声明、9901–9905 映射与文件标签草稿）
+├── sepolicy/          # SELinux 策略（五域 sadomain、sa_<层> 服务标签、9901–9905 数字映射）
 └── tools/shuyuan_demo_client/   # 跨 SA 串通测试客户端（可执行）
 ```
 
