@@ -1,4 +1,4 @@
-# 枢元子系统源码骨架（foundation/shuyuan）
+# 枢元智能体操作系统 · 子系统源码骨架（foundation/shuyuan）
 
 本目录镜像 OpenHarmony 源码树中的部件布局。五个部件骨架均已落地，结构同构；`lingtai/` 为参照样板，其余四层按相同骨架替换了 SA ID、进程名与接口。
 

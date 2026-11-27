@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### 变更
+
+- 工程命名空间由 `shuyuan` 统一为 `shuyuan`：源码目录、C++ 命名空间、接口描述符、日志标签、参数前缀、`bundle.json` 的 `subsystem`、`destPath`、`inner_kits` 与 init/客户端目标全部同步；中文名保持「枢元智能体操作系统」，英文名保持「Shuyuan AgentOS」。
+
 ### 新增
 
 - 社区健康文件：`CONTRIBUTING.md`、`CODE_OF_CONDUCT.md`、`SECURITY.md`、`DCO`、Issue/PR 模板。
