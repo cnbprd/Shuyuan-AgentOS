@@ -1,0 +1,36 @@
+import("//build/ohos.gni")
+
+# 令终 SA 动态库（任务闭环）。deps 目标名以实际源码树为准。
+ohos_shared_library("lingzhong_service") {
+    sources = [
+        "services/src/lingzhong_service.cpp",
+        "services/src/lingzhong_service_stub.cpp",
+        "services/src/lingzhong_service_proxy.cpp",
+    ]
+
+    include_dirs = [
+        "interfaces/innerkits/include",
+        "services/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+
+    deps = [
+        "//foundation/systemabilitymgr/safwk:sa_framework",
+        "//communication/ipc:ipc_core",
+        "//base/hiviewdfx/hilog:hilog",
+    ]
+
+    part_name = "lingzhong"
+    install_enable = true
+    relative_install_dir = "lib64"
+}
+
+ohos_shared_library("lingzhong_interfaces") {
+    sources = []
+    public_header_dirs = [
+        "interfaces/innerkits/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+    part_name = "lingzhong"
+    install_enable = false
+}

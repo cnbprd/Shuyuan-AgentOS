@@ -1,0 +1,7 @@
+# 枢元智能体操作系统 · 监观服务 init 声明（与 .cfg 对等，按产品 init 框架版本二选一或并存）
+service jianguan_service /system/bin/sa_main /system/profile/jianguan_service.xml
+    uid system
+    gid system
+    seclabel u:r:jianguan_service:s0
+    class main
+    group system

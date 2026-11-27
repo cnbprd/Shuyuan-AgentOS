@@ -1,0 +1,42 @@
+{
+    "name": "@ohos/heming",
+    "description": "Shuyuan Agent OS - Heming collaboration system ability (SA 9903): multi-agent and skill orchestration",
+    "version": "5.1.0",
+    "license": "Apache-2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "foundation/shuyuan/heming"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "heming",
+        "subsystem": "shuyuan",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "170KB",
+        "ram": "1MB",
+        "deps": {
+            "components": [
+                "safwk",
+                "ipc",
+                "hilog"
+            ],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//foundation/shuyuan/heming:heming_service",
+                "//foundation/shuyuan/heming/services/etc:etc",
+                "//foundation/shuyuan/heming/sa_profile:heming_sa_profile"
+            ],
+            "inner_kits": [
+                "//foundation/shuyuan/heming:heming_interfaces"
+            ],
+            "test": []
+        }
+    }
+}

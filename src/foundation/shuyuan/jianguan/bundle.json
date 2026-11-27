@@ -1,0 +1,42 @@
+{
+    "name": "@ohos/jianguan",
+    "description": "Shuyuan Agent OS - Jianguan perception system ability (SA 9902): environment and task state snapshot",
+    "version": "5.1.0",
+    "license": "Apache-2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "foundation/shuyuan/jianguan"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "jianguan",
+        "subsystem": "shuyuan",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "160KB",
+        "ram": "1MB",
+        "deps": {
+            "components": [
+                "safwk",
+                "ipc",
+                "hilog"
+            ],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//foundation/shuyuan/jianguan:jianguan_service",
+                "//foundation/shuyuan/jianguan/services/etc:etc",
+                "//foundation/shuyuan/jianguan/sa_profile:jianguan_sa_profile"
+            ],
+            "inner_kits": [
+                "//foundation/shuyuan/jianguan:jianguan_interfaces"
+            ],
+            "test": []
+        }
+    }
+}

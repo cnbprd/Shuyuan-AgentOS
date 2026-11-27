@@ -1,0 +1,36 @@
+import("//build/ohos.gni")
+
+# 和鸣 SA 动态库（协作机制）。deps 目标名以实际源码树为准。
+ohos_shared_library("heming_service") {
+    sources = [
+        "services/src/heming_service.cpp",
+        "services/src/heming_service_stub.cpp",
+        "services/src/heming_service_proxy.cpp",
+    ]
+
+    include_dirs = [
+        "interfaces/innerkits/include",
+        "services/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+
+    deps = [
+        "//foundation/systemabilitymgr/safwk:sa_framework",
+        "//communication/ipc:ipc_core",
+        "//base/hiviewdfx/hilog:hilog",
+    ]
+
+    part_name = "heming"
+    install_enable = true
+    relative_install_dir = "lib64"
+}
+
+ohos_shared_library("heming_interfaces") {
+    sources = []
+    public_header_dirs = [
+        "interfaces/innerkits/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+    part_name = "heming"
+    install_enable = false
+}

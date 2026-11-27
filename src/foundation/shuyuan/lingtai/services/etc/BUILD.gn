@@ -1,0 +1,14 @@
+import("//build/ohos.gni")
+
+# init 配置文件安装目标：将 .cfg / .rc 打入镜像 /system/etc/init（或产品约定目录）。
+# 本层 .cfg 仅提供 services 定义；五层启动顺序由子系统级 init/shuyuan_boot.cfg 统一控制。
+ohos_prebuilt_etc("etc") {
+    source = "init/lingtai_service.cfg"
+    relative_install_dir = "init"
+    part_name = "lingtai"
+    install_images = [
+        "system",
+    ]
+}
+
+# .rc 若产品框架要求单独安装，可再增加一个 ohos_prebuilt_etc 目标指向 init/lingtai_service.rc。

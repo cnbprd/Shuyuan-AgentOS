@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  枢元智能体操作系统 · 灵台（调度中枢）SA 9901
+  profile：声明进程归属、库路径与启动属性。
+  字段含义以 OpenHarmony safwk 官方 sample 为准；一个 profile 文件只含一个 systemability 节点。
+-->
+<info>
+    <process>lingtai_service</process>
+    <systemability>
+        <name>9901</name>
+        <libpath>/system/lib64/liblingtai_service.z.so</libpath>
+        <run-on-create>true</run-on-create>
+        <distributed>false</distributed>
+        <bootphase>CoreStartPhase</bootphase>
+        <dump-level>1</dump-level>
+    </systemability>
+</info>

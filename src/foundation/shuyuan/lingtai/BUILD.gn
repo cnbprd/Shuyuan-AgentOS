@@ -1,0 +1,38 @@
+import("//build/ohos.gni")
+
+# 灵台 SA 动态库：由 init 经 sa_main 加载，向 samgr 注册为 SA 9901。
+# 注意：deps 中的 GN 目标名以实际源码树为准（见 07-阶段一自研手册.md「待源码树核实项」）。
+ohos_shared_library("lingtai_service") {
+    sources = [
+        "services/src/lingtai_service.cpp",
+        "services/src/lingtai_service_stub.cpp",
+        "services/src/lingtai_service_proxy.cpp",
+    ]
+
+    include_dirs = [
+        "interfaces/innerkits/include",
+        "services/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+
+    deps = [
+        "//foundation/systemabilitymgr/safwk:sa_framework",
+        "//communication/ipc:ipc_core",
+        "//base/hiviewdfx/hilog:hilog",
+    ]
+
+    part_name = "lingtai"
+    install_enable = true
+    relative_install_dir = "lib64"
+}
+
+# 对外接口头文件集合，供同子系统其他部件（监观/和鸣/令终/敬止）以 inner_kits 依赖。
+ohos_shared_library("lingtai_interfaces") {
+    sources = []
+    public_header_dirs = [
+        "interfaces/innerkits/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+    part_name = "lingtai"
+    install_enable = false
+}

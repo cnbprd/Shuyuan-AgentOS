@@ -1,0 +1,42 @@
+{
+    "name": "@ohos/lingzhong",
+    "description": "Shuyuan Agent OS - Lingzhong closure system ability (SA 9904): task lifecycle closure and final state",
+    "version": "5.1.0",
+    "license": "Apache-2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "foundation/shuyuan/lingzhong"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "lingzhong",
+        "subsystem": "shuyuan",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "160KB",
+        "ram": "1MB",
+        "deps": {
+            "components": [
+                "safwk",
+                "ipc",
+                "hilog"
+            ],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//foundation/shuyuan/lingzhong:lingzhong_service",
+                "//foundation/shuyuan/lingzhong/services/etc:etc",
+                "//foundation/shuyuan/lingzhong/sa_profile:lingzhong_sa_profile"
+            ],
+            "inner_kits": [
+                "//foundation/shuyuan/lingzhong:lingzhong_interfaces"
+            ],
+            "test": []
+        }
+    }
+}

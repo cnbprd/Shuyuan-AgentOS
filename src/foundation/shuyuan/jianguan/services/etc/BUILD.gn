@@ -1,0 +1,10 @@
+import("//build/ohos.gni")
+
+ohos_prebuilt_etc("etc") {
+    source = "init/jianguan_service.cfg"
+    relative_install_dir = "init"
+    part_name = "jianguan"
+    install_images = [
+        "system",
+    ]
+}

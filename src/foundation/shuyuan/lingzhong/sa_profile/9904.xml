@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 枢元智能体操作系统 · 令终（任务闭环）SA 9904 -->
+<info>
+    <process>lingzhong_service</process>
+    <systemability>
+        <name>9904</name>
+        <libpath>/system/lib64/liblingzhong_service.z.so</libpath>
+        <run-on-create>true</run-on-create>
+        <distributed>false</distributed>
+        <bootphase>CoreStartPhase</bootphase>
+        <dump-level>1</dump-level>
+    </systemability>
+</info>

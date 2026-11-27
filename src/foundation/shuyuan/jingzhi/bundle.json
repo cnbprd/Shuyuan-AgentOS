@@ -1,0 +1,42 @@
+{
+    "name": "@ohos/jingzhi",
+    "description": "Shuyuan Agent OS - Jingzhi governance system ability (SA 9905): authorization check and audit",
+    "version": "5.1.0",
+    "license": "Apache-2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "foundation/shuyuan/jingzhi"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "jingzhi",
+        "subsystem": "shuyuan",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "180KB",
+        "ram": "1MB",
+        "deps": {
+            "components": [
+                "safwk",
+                "ipc",
+                "hilog"
+            ],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//foundation/shuyuan/jingzhi:jingzhi_service",
+                "//foundation/shuyuan/jingzhi/services/etc:etc",
+                "//foundation/shuyuan/jingzhi/sa_profile:jingzhi_sa_profile"
+            ],
+            "inner_kits": [
+                "//foundation/shuyuan/jingzhi:jingzhi_interfaces"
+            ],
+            "test": []
+        }
+    }
+}

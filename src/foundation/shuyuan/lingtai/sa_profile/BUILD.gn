@@ -1,0 +1,9 @@
+import("//build/ohos/sa_profile/sa_profile.gni")
+
+# 灵台 SA profile 安装目标：编译后随部件进入镜像 /system/profile 目录。
+ohos_sa_profile("lingtai_sa_profile") {
+    sources = [
+        "9901.xml",
+    ]
+    part_name = "lingtai"
+}

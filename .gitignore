@@ -1,0 +1,38 @@
+# ---- OpenHarmony 构建产物 ----
+out/
+build/
+*.o
+*.obj
+*.so
+*.z.so
+*.a
+*.elf
+*.img
+*.bin
+
+# ---- 临时与日志 ----
+*.log
+*.tmp
+*.temp
+*.bak
+*~
+
+# ---- 系统垃圾 ----
+.DS_Store
+Thumbs.db
+desktop.ini
+Desktop.ini
+
+# ---- 编辑器 / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- 本地密钥与凭据（不入库） ----
+*.pem
+*.key
+*.p12
+*.jks
+.env
+.env.local

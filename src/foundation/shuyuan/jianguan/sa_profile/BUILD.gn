@@ -1,0 +1,8 @@
+import("//build/ohos/sa_profile/sa_profile.gni")
+
+ohos_sa_profile("jianguan_sa_profile") {
+    sources = [
+        "9902.xml",
+    ]
+    part_name = "jianguan"
+}

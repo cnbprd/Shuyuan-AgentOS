@@ -1,0 +1,14 @@
+import("//build/ohos.gni")
+
+# 枢元子系统统一启动时序配置：在同一个 post-init job 的 cmds 内按依赖顺序拉起五层 SA。
+# 顺序由本文件同 job 内 cmd 顺序保证；跨 cfg 同名 job 的命令顺序官方不保证，
+# 因此五层启动顺序集中在本文件，不在各层本地 cfg 中单独排序。
+# part_name 与安装目录以真实源码树产品配置为准（见 07-阶段一自研手册.md 待核实项）。
+ohos_prebuilt_etc("shuyuan_boot_cfg") {
+    source = "shuyuan_boot.cfg"
+    relative_install_dir = "init"
+    part_name = "shuyuan"
+    install_images = [
+        "system",
+    ]
+}

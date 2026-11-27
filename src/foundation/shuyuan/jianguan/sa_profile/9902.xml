@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 枢元智能体操作系统 · 监观（感知层）SA 9902 -->
+<info>
+    <process>jianguan_service</process>
+    <systemability>
+        <name>9902</name>
+        <libpath>/system/lib64/libjianguan_service.z.so</libpath>
+        <run-on-create>true</run-on-create>
+        <distributed>false</distributed>
+        <bootphase>CoreStartPhase</bootphase>
+        <dump-level>1</dump-level>
+    </systemability>
+</info>

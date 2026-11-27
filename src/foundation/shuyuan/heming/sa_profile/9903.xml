@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 枢元智能体操作系统 · 和鸣（协作机制）SA 9903 -->
+<info>
+    <process>heming_service</process>
+    <systemability>
+        <name>9903</name>
+        <libpath>/system/lib64/libheming_service.z.so</libpath>
+        <run-on-create>true</run-on-create>
+        <distributed>false</distributed>
+        <bootphase>CoreStartPhase</bootphase>
+        <dump-level>1</dump-level>
+    </systemability>
+</info>

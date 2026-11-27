@@ -1,0 +1,42 @@
+{
+    "name": "@ohos/lingtai",
+    "description": "Shuyuan Agent OS - Lingtai nexus system ability (SA 9901): intent routing, agent registry, skill dispatch",
+    "version": "5.1.0",
+    "license": "Apache-2.0",
+    "publishAs": "code-segment",
+    "segment": {
+        "destPath": "foundation/shuyuan/lingtai"
+    },
+    "dirs": {},
+    "scripts": {},
+    "component": {
+        "name": "lingtai",
+        "subsystem": "shuyuan",
+        "syscap": [],
+        "features": [],
+        "adapted_system_type": [
+            "standard"
+        ],
+        "rom": "200KB",
+        "ram": "2MB",
+        "deps": {
+            "components": [
+                "safwk",
+                "ipc",
+                "hilog"
+            ],
+            "third_party": []
+        },
+        "build": {
+            "sub_component": [
+                "//foundation/shuyuan/lingtai:lingtai_service",
+                "//foundation/shuyuan/lingtai/services/etc:etc",
+                "//foundation/shuyuan/lingtai/sa_profile:lingtai_sa_profile"
+            ],
+            "inner_kits": [
+                "//foundation/shuyuan/lingtai:lingtai_interfaces"
+            ],
+            "test": []
+        }
+    }
+}

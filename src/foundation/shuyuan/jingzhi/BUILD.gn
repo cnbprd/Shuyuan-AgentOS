@@ -1,0 +1,36 @@
+import("//build/ohos.gni")
+
+# 敬止 SA 动态库（治理/审批层）。deps 目标名以实际源码树为准。
+ohos_shared_library("jingzhi_service") {
+    sources = [
+        "services/src/jingzhi_service.cpp",
+        "services/src/jingzhi_service_stub.cpp",
+        "services/src/jingzhi_service_proxy.cpp",
+    ]
+
+    include_dirs = [
+        "interfaces/innerkits/include",
+        "services/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+
+    deps = [
+        "//foundation/systemabilitymgr/safwk:sa_framework",
+        "//communication/ipc:ipc_core",
+        "//base/hiviewdfx/hilog:hilog",
+    ]
+
+    part_name = "jingzhi"
+    install_enable = true
+    relative_install_dir = "lib64"
+}
+
+ohos_shared_library("jingzhi_interfaces") {
+    sources = []
+    public_header_dirs = [
+        "interfaces/innerkits/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+    part_name = "jingzhi"
+    install_enable = false
+}
