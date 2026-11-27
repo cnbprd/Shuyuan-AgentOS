@@ -1,0 +1,17 @@
+name: compliance
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run compliance checks
+        run: bash scripts/check-compliance.sh

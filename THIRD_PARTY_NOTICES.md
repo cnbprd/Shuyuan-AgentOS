@@ -27,11 +27,13 @@
 | [QEMU](https://www.qemu.org/license.html) | GPL-2.0 | 本地启动/验证工具 | 不适用，不随仓库分发 | 已核对 QEMU 官方许可证页 |
 | Ubuntu Base 22.04 | 内含组件各自许可 | WSL 开发环境基础镜像 | 不适用，不随仓库分发 | 未逐包核对；不对外分发 |
 | 《诗经》 | 公有领域 | 七层命名语源（《崧高》《七月》《灵台》《皇矣》《有瞽》《既醉》《文王》） | 引用原文 | 篇目与用字已在 `01-命名体系.md` 逐字复核 |
+| [Contributor Covenant 2.1](https://www.contributor-covenant.org/version/2/1/code_of_conduct/) | CC BY 4.0 | 社区行为准则（`CODE_OF_CONDUCT.md`） | 是，改编并注明出处与修改 | 已核对官网版本号与许可说明 |
 
 ## 3. 许可证文本位置
 
 - 本项目：根目录 [`LICENSE`](LICENSE)（Apache License 2.0 全文）、[`NOTICE`](NOTICE)。
 - 上游：上表各仓库根目录的 `LICENSE`。`safwk`、`samgr`、`security_selinux`、`manifest`、`vendor_ohemu` 实测均为 Apache-2.0 全文；`build` 为 46 行复合文本（Apache-2.0 + Chromium 的 BSD-3-Clause 派生条款）；上述六仓**均未提供 `NOTICE` 文件**。`vendor_loongson`、`device_board_loongson`、`device_soc_loongson` 根目录无 `LICENSE` / `NOTICE`。
+- 行为准则：`CODE_OF_CONDUCT.md` 改编自 Contributor Covenant 2.1，按 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) 使用；该文本不适用本项目的 Apache-2.0，再分发时保留出处与许可证说明。
 - 若上游后续补充 `NOTICE`，再分发时应一并保留。
 
 ## 4. 分发与贡献要求
@@ -44,7 +46,7 @@
 
 ## 5. 核验记录与辅助证据
 
-- 加 SPDX 头之前，对本仓库 `src/`、`scripts/` 共 83 个文件检索 `Copyright` 与 `SPDX`：命中均为 0，未发现上游版权头，作为「未整段复制」的辅助证据（不等同法律结论）。本轮已为 67 个源码/脚本/策略/rc 文件补 `SPDX-License-Identifier: Apache-2.0` 头。
+- 加 SPDX 头之前，对本仓库 `src/`、`scripts/` 共 83 个文件检索 `Copyright` 与 `SPDX`：命中均为 0，未发现上游版权头，作为「未整段复制」的辅助证据（不等同法律结论）。本轮已为 69 个源码/脚本/策略/rc 文件补 `SPDX-License-Identifier: Apache-2.0` 头。
 - 上游 `vendor_loongson` 根目录仅 4 个文件（`common-config/rich-la.json`、`ls3a5000/config.json`、`ls3a5000/ohos.build`、`ls3a5000/product.gni`），无 `LICENSE`。
 - `device_board_loongson` 根目录仅 `CODEOWNERS`、`ls3a5000/`、`OAT.xml`、`README_zh.md`，无 `LICENSE`。
 - `device_soc_loongson` 根目录仅 `CODEOWNERS`、`ls3a5000/`、`OAT.xml`、`README.md`，无 `LICENSE`。

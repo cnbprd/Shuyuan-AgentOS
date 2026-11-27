@@ -15,6 +15,10 @@ safwk/samgr、security_selinux、build 及 LoongArch 移植仓库的公开资料
 参考方式为结构、接口与事实核验，未整段复制上游源文件；逐项出处、许可证状态
 与未核实项见 THIRD_PARTY_NOTICES.md。
 
+社区行为准则（CODE_OF_CONDUCT.md）改编自 Contributor Covenant 2.1，
+按 CC BY 4.0 使用；该文本不适用本项目的 Apache-2.0，再分发时保留出处与
+许可证说明。
+
 上游 OpenHarmony 组件遵循其各自许可证（主要为 Apache-2.0）。本 NOTICE
 不改变、也不额外限制这些许可证赋予的权利。
 

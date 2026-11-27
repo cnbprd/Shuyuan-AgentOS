@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全漏洞私密报告
+    url: https://github.com/cnbprd/Shuyuan-AgentOS/security/advisories/new
+    about: 请不要在公开 Issue 中披露漏洞细节。
+  - name: 先读项目文档
+    url: https://github.com/cnbprd/Shuyuan-AgentOS#readme
+    about: 架构、路线、进树核对与 QEMU 验证线都在 README 索引中。

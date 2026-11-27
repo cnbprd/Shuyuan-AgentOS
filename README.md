@@ -73,6 +73,7 @@
 | [`10-进树核对清单.md`](10-进树核对清单.md) | 阶段零上机逐项打勾清单：配置一致性、构建登记、IPC 序列化、属性、板级、观测判据 |
 | [`11-仓库上传通道.md`](11-仓库上传通道.md) | 稳定上传路径：SSH over 443 推送、gh CLI 发布资产、Actions 兜底与失败处置 |
 | [`12-QEMU验证线.md`](12-QEMU验证线.md) | 开发板到货前的 QEMU 最小闭环：对上传草案的五处修正、6–10 天阶段表、产品登记与 12 项进树核对 |
+| [`13-认证与合规清单.md`](13-认证与合规清单.md) | 已完成的开源合规项、需主体资料的软著/兼容性认证、可选提交签名 |
 
 ## 4.1 源码骨架
 
@@ -128,3 +129,10 @@ SELinux 策略骨架与「缺失即静默失败」的三层判据见 `src/founda
 **担保与贡献**：按 Apache-2.0 第 7、8 条「现状」提供，不附带明示或默示担保；提交贡献即视为同意以同一许可证授权（第 5 条）。
 
 > 许可范围仅覆盖本仓库自有代码与文档；OpenHarmony 上游部件、龙芯移植仓库等第三方内容仍遵循其各自许可证。上游 `vendor_loongson`、`device_board_loongson`、`device_soc_loongson` 仓库未附独立 `LICENSE` 文件，本项目仅引用其产品名与路径，未复制其代码或配置。
+
+## 8. 参与贡献与合规
+
+- 贡献流程、DCO 签署与代码要求见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
+- 社区行为准则见 [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md)；安全问题按 [`SECURITY.md`](SECURITY.md) 私下报告，不要开公开 Issue。
+- 提交前本地检查：Windows 运行 `pwsh scripts/check-compliance.ps1`；Linux 运行 `bash scripts/check-compliance.sh`。CI 在每次 push/PR 时执行同一套检查。
+- 需要主体资料、当前无法代办的外部认证（软著、OpenHarmony/龙芯兼容性、OpenSSF Badge）见 [`13-认证与合规清单.md`](13-认证与合规清单.md)。

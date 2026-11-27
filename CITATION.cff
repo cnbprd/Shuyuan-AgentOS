@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "引用本项目时请使用以下信息。"
+title: "枢元智能体操作系统（Shuyuan Agent OS）"
+abstract: "基于 OpenHarmony 标准系统与龙芯 LoongArch 的智能体调度底座：在系统服务内完成意图路由、Agent 注册发现、Skill 调度与执行治理，推理循环外置。"
+authors:
+  - name: "枢元智能体操作系统 项目（cnbprd）"
+version: "0.1.0-dev"
+license: "Apache-2.0"
+repository-code: "https://github.com/cnbprd/Shuyuan-AgentOS"
+keywords:
+  - "OpenHarmony"
+  - "LoongArch"
+  - "SystemAbility"
+  - "AI Agent"
+  - "智能体调度"
