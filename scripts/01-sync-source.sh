@@ -16,10 +16,13 @@ if ! command -v repo >/dev/null 2>&1; then
     export PATH="$HOME/bin:$PATH"
 fi
 
+# repo 启动器默认会去 gerrit.googlesource.com 拉取自身源码，国内网络常见 504 Gateway Time-out；
+# 显式指定 Gitee 镜像与分支可绕过（2026-11-27 已在云主机实测 init 成功）。
 repo init -u https://gitee.com/openharmony-loongarch/manifest.git \
-    -b ohos-main -m loongarch.xml --no-repo-verify -v
+    -b ohos-main -m loongarch.xml --no-repo-verify -v \
+    --repo-url=https://gitee.com/oschina/repo.git --repo-rev=main
 
-repo sync -c
+repo sync -c -j4
 repo forall -c 'git lfs pull'
 
 # 预编译二进制（SDK / 工具链）下载。

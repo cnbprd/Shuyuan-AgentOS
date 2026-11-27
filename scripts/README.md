@@ -22,10 +22,13 @@ cd ~/openharmony_loongarch
 ./scripts/02-build.sh qemu-loongarch64-linux-min
 ```
 
-## 产品选择
+## 产品选择（2026-11-27 已实证）
 
-- `qemu-loongarch64-linux-min`：最小虚拟机镜像，**先在其上验证五层 SA 软件逻辑贯通**。
-- `ls3a5000@loongson`：3A5000/3A6000 7A 系列主板 PC 镜像，硬件调试阶段使用。
+- `qemu-loongarch64-linux-min`：最小虚拟机镜像（`vendor/ohemu`），**先在其上验证五层 SA 软件逻辑贯通**。
+- `ls3a5000@loongson`：3A5000/3A6000 7A 系列主板 PC 镜像（`vendor/loongson`，`product_name=ls3a5000`），硬件调试阶段使用。
+- **不存在 `loongpc` 产品**，公开仓也没有 3A6000 独立板级目录。
+
+> `repo init` 务必带 `--repo-url=https://gitee.com/oschina/repo.git --repo-rev=main`：默认会去 `gerrit.googlesource.com` 拉 repo 自身源码，国内网络实测 504。脚本已内置该参数。
 
 ## 待核实项（与 07 手册第 7 节一致）
 
