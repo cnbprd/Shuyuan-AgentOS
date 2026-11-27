@@ -99,7 +99,7 @@ SELinux 策略骨架与「缺失即静默失败」的三层判据见 `src/founda
 ## 5. 当前基线结论（来自前期可行性评估）
 
 - 架构原理成立：自定义 SA 是 OpenHarmony 体系内实现早启动、高权限全局服务的标准路径，无原理性障碍。
-- 头号工程风险是 **SELinux 策略**：自定义域与 SA ID 授权缺失会导致 `init` 拉起阶段静默失败；开发初期建议先 `permissive` 跑通全链路，再补规则切回 `enforcing`。
+- 头号工程风险是 **SELinux 策略**：自定义域与 SA ID 授权缺失会导致 `init` 拉起阶段静默失败；但该风险只在镜像启用 SELinux 时成立——QEMU 最小镜像 `build_selinux=false` 且无 `selinux_adapter`，首轮不构建策略，`hidumper` 失败时按 `12-QEMU验证线.md` 的四条路径排查，不查 SELinux。真机/二轮再先 `permissive` 跑通、补规则、切回 `enforcing`。
 - 第二风险是 **3A6000 BSP 完整度**：已核实龙架构主线移植提供 `ls3a5000@loongson`（`product_name=ls3a5000`，3A5000/3A6000 7A 主板）PC 镜像与 `qemu-loongarch64-linux-min` 最小虚拟机镜像；公开仓内**没有 `loongpc` 产品，也没有 3A6000 独立板级**，3A6000 走 `ls3a5000` 板级，外设驱动完备度需拉源码与实机核实（见 `07-阶段一自研手册.md` 第 2.1、8 节）。
 - 时间预估为工程经验估算（非官方数据），整体落地约 11–16 周，详见路线图文档。
 

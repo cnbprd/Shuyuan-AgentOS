@@ -74,7 +74,7 @@ repo sync -c -j4
 | 5 | `OnDump` 签名与基类匹配 | 查 `system_ability.h` |
 | 6 | 属性写入 API 与版本一致 | 查 sample |
 | 7 | **profile 安装名** | 镜像内是 `9901.xml`，cfg/rc 必须指向它 |
-| 8 | `cfg` 的 `secon` 与 `.te` 进程域 type 一致 | 不一致启动被拦 |
+| 8 | `cfg` 的 `secon` 与 `.te` 进程域 type 一致（静态核对；QEMU 无策略，不产生运行时拦截） | 文本一致即可；生效验证留真机/二轮 |
 | 9 | **`part_name` 与产品登记的 component 名一致** | `lingtai` 对 `lingtai`；`init/` 与 `demo_client/` 当前写 `shuyuan`，无对应 component，首轮不编这两个目标 |
 | 10 | **`init/` 子系统 cfg 与客户端先不进首轮镜像** | 首轮只验 9901，避免多一个未登记 part 干扰 |
 | 11 | **产物名** | `liblingtai_service.z.so`，不是 `liblingtai.z.so` |
@@ -102,7 +102,14 @@ repo sync -c -j4
 2. `hilog | grep -i "lingtai.*Publish"`
 3. `hidumper -s 9901`
 
-第 3 条失败时：**先查 profile 路径与 SA ID 一致性，不要查 SELinux**——该产品 `build_selinux=false`，镜像无策略。若三条全过，再进 IPC。
+第 3 条失败时，QEMU 阶段**不查 SELinux**——该产品 `build_selinux=false`，`subsystems` 也无 `selinux_adapter`，镜像没有策略，也不会有 `avc: denied`。按以下四条顺序排，前一条不成立再进下一条：
+
+1. **profile 是否真进镜像**：`ls /system/profile` 找 `9901.xml`；没有就查 `part_name` 与 `ohos_sa_profile` 安装目标。
+2. **samgr 是否收到 `Publish`**：`hilog` 里找 `lingtai.*Publish`，区分「成功」「失败」「根本没执行」。
+3. **GN target 与 `bundle.json` 是否一致**：`sub_component` / `inner_kits` 能解析到真实 target；GN 通过但 `out/` 无产物，优先查这里。
+4. **进程名与 profile 是否一致**：`cfg`/`rc` 的 process、`9901.xml` 的 `<process>`、代码 SA ID 三处逐字对齐；进程在但列表无 9901，多半是 `Publish` 失败或 ID 不一致。
+
+> SELinux 的 `service_contexts`、`type.te` 继承、`secon` 一致性，QEMU 阶段全部标「真机/二轮待验证」，不在本阶段下结论。若三条全过，再进 IPC。
 
 ## 7. 阶段 4：IPC 与并发
 

@@ -48,7 +48,7 @@ if (defined(product_build_config.build_selinux)) {
 
 由此推出两条：
 
-- QEMU 首启如果 `hidumper -s 9901` 为空，**先不要怀疑 SELinux**——镜像里没有策略；
+- QEMU 首启如果 `hidumper -s 9901` 为空，**先不要怀疑 SELinux**——镜像里没有策略；按 `12-QEMU验证线.md` 的四条路径排查（profile → Publish → target 一致性 → process 名一致性）；
 - 要验证本目录的策略，必须把产品 `config.json` 的 `build_selinux` 置 `true`，并确认 `selinux_adapter` 部件仍在 subsystems 中。验证 SELinux 是**第二轮**上机，不是首轮。
 
 ## 4. 落地位置

@@ -68,4 +68,4 @@ wsl --import Ubuntu-22.04 "F:\ShuyuanAgent OS\wsl\Ubuntu-22.04" "F:\ShuyuanAgent
 ## 红线提醒
 
 - 本阶段只做环境与编译链路，**不在脚本内加入任何模型调用、Prompt 拼接或推理逻辑**。
-- 开发初期建议先将 SELinux 置为 permissive 跑通全链路，再补自定义域规则切回 enforcing（见 07 手册 SELinux 三类授权）。
+- SELinux 仅在启用策略的镜像上调试（真机/二轮）；QEMU 最小镜像 `build_selinux=false` 且无 `selinux_adapter`，首轮不查 `avc`，排查按 `12-QEMU验证线.md` 四条路径走。
