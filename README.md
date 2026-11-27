@@ -9,7 +9,7 @@
 | :--- | :--- |
 | 中文名 | 枢元智能体操作系统 |
 | 英文名 | Shuyuan AgentOS |
-| 项目代号 | 枢元（Shuyuan） |
+| 项目代号 | 枢元（Shuyuan；工程命名空间沿用 `shuyuan`） |
 | 仓库标识 | `Shuyuan-AgentOS`（GitHub slug；英文名 Shuyuan AgentOS 的连字符写法） |
 | 技术基线 | OpenHarmony（标准系统） + 自研系统服务（SA） |
 | 目标硬件 | 龙芯 3A6000，CPU 架构 loongarch64 |
