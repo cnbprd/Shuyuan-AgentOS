@@ -36,3 +36,8 @@ Desktop.ini
 *.jks
 .env
 .env.local
+
+# ---- 本地构建环境（WSL 发行版/虚拟磁盘/安装包，绝不入库） ----
+wsl/
+*.vhdx
+*.tar.gz

@@ -28,6 +28,24 @@ cd ~/openharmony_loongarch
 - `ls3a5000@loongson`：3A5000/3A6000 7A 系列主板 PC 镜像（`vendor/loongson`，`product_name=ls3a5000`），硬件调试阶段使用。
 - **不存在 `loongpc` 产品**，公开仓也没有 3A6000 独立板级目录。
 
+## 构建环境位置
+
+WSL 发行版、安装包与虚拟磁盘统一放在项目内 `wsl/`（`F:\ShuyuanAgent OS\wsl`），已加入 `.gitignore`，不入库：
+
+```
+wsl/
+├── dl/                     # wsl_update_x64.msi、ubuntu-base-22.04-amd64.tar.gz
+├── Ubuntu-22.04/           # 导入后的发行版，ext4.vhdx 在此
+├── bootstrap.sh            # 发行版内依赖安装（阿里云源）
+└── setup-wsl.ps1           # 启用 WSL/虚拟机平台并装内核的提权脚本
+```
+
+导入命令（管理员启用功能并重启后执行）：
+
+```powershell
+wsl --import Ubuntu-22.04 "F:\ShuyuanAgent OS\wsl\Ubuntu-22.04" "F:\ShuyuanAgent OS\wsl\dl\ubuntu-base-22.04-amd64.tar.gz" --version 2
+```
+
 > `repo init` 务必带 `--repo-url=https://gitee.com/oschina/repo.git --repo-rev=main`：默认会去 `gerrit.googlesource.com` 拉 repo 自身源码，国内网络实测 504。脚本已内置该参数。
 
 ## 待核实项（与 07 手册第 7 节一致）
