@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 阶段零 · 同步龙芯 LoongArch 版 OpenHarmony 源码
 # 用法：./01-sync-source.sh [源码目录]
 # 说明：manifest 与产品名来自公开移植组织 openharmony-loongarch（Gitee，ohos-main 分支）。

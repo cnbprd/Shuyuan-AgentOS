@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 阶段零 · 宿主编译环境准备（Ubuntu 22.04 / WSL2）
 # 注意：本脚本在 Linux 宿主或 WSL2 内执行，不要在 Windows PowerShell 直接运行。
 # 依赖清单为 OpenHarmony 通用编译基线；具体版本与补充包以官方文档为准（待核实项见 07 手册第 7 节）。

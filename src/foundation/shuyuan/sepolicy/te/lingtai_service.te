@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 灵台 9901 · 域与服务标签（依据 OpenHarmony security_selinux 实证模板）
 # 证据：type.te `type hidumper_service, sadomain, domain;`
 #       service.te `type sa_dfx_sys_hidumper_ability, sa_service_attr;`

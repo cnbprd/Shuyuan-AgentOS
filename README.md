@@ -108,12 +108,23 @@ SELinux 策略骨架与「缺失即静默失败」的三层判据见 `src/founda
 - 本轮已联网核实 SA/IPC C++ 范式与龙架构移植组织信息；原始方案文本中 `loongphone`、`2k3000` 等名称未检索到佐证，已在手册中标注为待核实。
 - 整体方案可行性信心评分：**8/10**（架构可行；扣分项为 SELinux、BSP 完整度、部件耦合三类工程不确定性）；样板骨架可编译性信心：**6.5/10**（结构依据官方 sample 编写，依赖目标名与版本相关 API 待真实源码树核对）。
 
-## 7. 开源许可
+## 7. 开源许可与自研声明
 
-本项目以 **Apache License 2.0** 开源，全文见 [`LICENSE`](LICENSE)。各部件 `bundle.json` 的 `license` 字段同为 `Apache-2.0`。
+**许可证**：本项目以 **Apache License 2.0** 开源，全文见 [`LICENSE`](LICENSE)；各部件 `bundle.json` 的 `license` 字段均为 `Apache-2.0`。
 
-- 允许商用、修改、分发与专利授权；分发时须保留许可证与版权声明，修改过的文件需显著标注改动。
-- 按 Apache-2.0 第 7、8 条，本项目按「现状」提供，不附带任何明示或默示担保。
-- 提交贡献即视为同意以同一许可证授权（第 5 条）。
+**版权**：Copyright (c) 2026 枢元智能体操作系统 项目（cnbprd）。完整声明见 [`NOTICE`](NOTICE)。
 
-> 许可范围仅覆盖本仓库自有代码与文档；OpenHarmony 上游部件、龙芯移植仓库等第三方内容仍遵循其各自许可证。
+**自研边界**：
+
+- **自研**：七层命名与架构、五层 SA 的接口定义与实现、调度与治理逻辑、`init` 启动编排、测试客户端、全部项目文档与脚本。
+- **借鉴（只借鉴结构、接口与公开事实，未整段复制源文件）**：OpenHarmony `safwk`/`samgr` 的 SA 接口与目录组织；`security_selinux` 的属性、数字 SAID 映射与授权范式；`build` 的 `sa_profile` 安装规则与 `build_selinux` 默认值；LoongArch 移植仓库的产品名与配置字段。
+- **底座**：OpenHarmony 本体按上游许可证使用，不属于本项目自研范围。
+- **工具**：QEMU（GPL-2.0，本地验证）与 Ubuntu Base 22.04（本地开发环境）不随本仓库分发。
+
+逐项出处、许可证状态与未核实项见 [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)。
+
+**分发义务**：再分发须保留 `LICENSE`、`NOTICE`、`THIRD_PARTY_NOTICES.md`；修改过的文件需显著标注改动；不得删除上游版权声明。
+
+**担保与贡献**：按 Apache-2.0 第 7、8 条「现状」提供，不附带明示或默示担保；提交贡献即视为同意以同一许可证授权（第 5 条）。
+
+> 许可范围仅覆盖本仓库自有代码与文档；OpenHarmony 上游部件、龙芯移植仓库等第三方内容仍遵循其各自许可证。上游 `vendor_loongson`、`device_board_loongson`、`device_soc_loongson` 仓库未附独立 `LICENSE` 文件，本项目仅引用其产品名与路径，未复制其代码或配置。

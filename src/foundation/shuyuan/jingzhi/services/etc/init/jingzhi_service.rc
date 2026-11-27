@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 枢元智能体操作系统 · 敬止服务 init 声明（与 .cfg 对等，按产品 init 框架版本二选一或并存）
 service jingzhi_service /system/bin/sa_main /system/profile/9905.xml
     uid system

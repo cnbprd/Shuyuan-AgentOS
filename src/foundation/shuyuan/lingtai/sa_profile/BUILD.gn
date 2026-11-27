@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 import("//build/ohos/sa_profile/sa_profile.gni")
 
 # 灵台 SA profile 安装目标：编译后随部件进入镜像 /system/profile 目录。

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+ * SPDX-License-Identifier: Apache-2.0
+ */
 /**
  * 枢元智能体操作系统 · 跨 SA 串通演示客户端（测试可执行）
  *

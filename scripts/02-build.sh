@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 阶段零/一 · 编译入口
 # 用法：
 #   ./02-build.sh [产品名] [build-target]

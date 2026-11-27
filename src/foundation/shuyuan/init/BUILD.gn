@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 import("//build/ohos.gni")
 
 # 枢元子系统统一启动时序配置：在同一个 post-init job 的 cmds 内按依赖顺序拉起五层 SA。

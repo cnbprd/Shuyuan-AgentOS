@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 敬止 9905 · 域与服务标签（模板同 lingtai，来源见该文件注释）
 # 治理域后续需要审计落盘时，再按实际路径补 file 标签与读写 allow。
 

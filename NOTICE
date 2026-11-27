@@ -1,0 +1,24 @@
+枢元智能体操作系统（Shuyuan Agent OS）
+Copyright (c) 2026 枢元智能体操作系统 项目（cnbprd）
+
+Project: Shuyuan Agent OS
+Copyright (c) 2026 Shuyuan Agent OS project (cnbprd)
+Licensed under the Apache License, Version 2.0. See LICENSE for the full text.
+
+自研与借鉴声明
+--------------
+本仓库新增的系统服务骨架、调度与治理设计、接口定义、文档与脚本，为项目自研实现；
+OpenHarmony 作为系统底座，按上游许可证使用，不属于本项目自研范围。
+
+系统服务接口范式、SELinux 策略范式、产品与构建规则，分别参考 OpenHarmony
+safwk/samgr、security_selinux、build 及 LoongArch 移植仓库的公开资料。
+参考方式为结构、接口与事实核验，未整段复制上游源文件；逐项出处、许可证状态
+与未核实项见 THIRD_PARTY_NOTICES.md。
+
+上游 OpenHarmony 组件遵循其各自许可证（主要为 Apache-2.0）。本 NOTICE
+不改变、也不额外限制这些许可证赋予的权利。
+
+第三方工具（不随本仓库分发）
+---------------------------
+- QEMU：GPL-2.0，仅用于本地验证。
+- Ubuntu Base 22.04：仅用于本地开发环境，其内含组件遵循各自许可证。

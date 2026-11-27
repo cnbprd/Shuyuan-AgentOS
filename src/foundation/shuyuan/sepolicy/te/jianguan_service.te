@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 监观 9902 · 域与服务标签（模板同 lingtai，来源见该文件注释）
 
 type jianguan_service, sadomain, domain;

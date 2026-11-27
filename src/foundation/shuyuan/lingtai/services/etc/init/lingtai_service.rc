@@ -1,3 +1,5 @@
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# SPDX-License-Identifier: Apache-2.0
 # 枢元智能体操作系统 · 灵台服务 init 声明（与 .cfg 对等，按产品 init 框架版本二选一或并存）
 # seclabel 与 cfg 的 secon 对应同一 SELinux 域；该域必须授权拉起、注册 SA 9901 与 IPC 访问。
 service lingtai_service /system/bin/sa_main /system/profile/9901.xml

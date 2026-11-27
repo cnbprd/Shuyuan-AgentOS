@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+ * SPDX-License-Identifier: Apache-2.0
+ */
 #ifndef SHUYUAN_LINGZHONG_SERVICE_STUB_H
 #define SHUYUAN_LINGZHONG_SERVICE_STUB_H
 
