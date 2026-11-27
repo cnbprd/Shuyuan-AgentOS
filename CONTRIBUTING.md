@@ -36,7 +36,7 @@
 - 新增 `.h/.cpp/.gn/.sh/.te/.rc` 文件必须带：
 
   ```text
-  Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+  Copyright (c) 2026 枢元智能体操作系统 (Shuyuan AgentOS)
   SPDX-License-Identifier: Apache-2.0
   ```
 

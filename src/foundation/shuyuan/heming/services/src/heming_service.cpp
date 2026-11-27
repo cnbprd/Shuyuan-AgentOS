@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+ * Copyright (c) 2026 枢元智能体操作系统 (Shuyuan AgentOS)
  * SPDX-License-Identifier: Apache-2.0
  */
 #include "heming_service.h"

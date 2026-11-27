@@ -1,4 +1,4 @@
-# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan Agent OS)
+# Copyright (c) 2026 枢元智能体操作系统 (Shuyuan AgentOS)
 # SPDX-License-Identifier: Apache-2.0
 #
 # 仓库合规检查（Windows）：必需文件、SPDX 头、JSON、bundle 许可证、冲突标记。

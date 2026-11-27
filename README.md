@@ -1,4 +1,4 @@
-# 枢元智能体操作系统
+# 枢元智能体操作系统（Shuyuan AgentOS）
 
 > 以智能体调度为第一性职责的专用系统底座。
 > 基于 OpenHarmony 部件化架构，面向龙芯 3A6000（loongarch64）交叉编译，通过自定义 SystemAbility（SA）将意图路由、Agent 注册发现、Skill 调度与执行治理植入系统启动链路，而非寄居在应用沙箱内。
@@ -7,8 +7,10 @@
 
 | 项 | 内容 |
 | :--- | :--- |
+| 中文名 | 枢元智能体操作系统 |
+| 英文名 | Shuyuan AgentOS |
 | 项目代号 | 枢元（Shuyuan） |
-| 仓库标识 | `Shuyuan-AgentOS`（GitHub slug；远程仓库名在 GitHub Settings 重命名后与此一致） |
+| 仓库标识 | `Shuyuan-AgentOS`（GitHub slug；英文名 Shuyuan AgentOS 的连字符写法） |
 | 技术基线 | OpenHarmony（标准系统） + 自研系统服务（SA） |
 | 目标硬件 | 龙芯 3A6000，CPU 架构 loongarch64 |
 | 宿主构建环境 | Ubuntu 22.04 LTS（物理机或 Win11 + WSL2） |
@@ -113,7 +115,7 @@ SELinux 策略骨架与「缺失即静默失败」的三层判据见 `src/founda
 
 **许可证**：本项目以 **Apache License 2.0** 开源，全文见 [`LICENSE`](LICENSE)；各部件 `bundle.json` 的 `license` 字段均为 `Apache-2.0`。
 
-**版权**：Copyright (c) 2026 枢元智能体操作系统 项目（cnbprd）。完整声明见 [`NOTICE`](NOTICE)。
+**版权**：Copyright (c) 2026 枢元智能体操作系统项目（cnbprd）。完整声明见 [`NOTICE`](NOTICE)。
 
 **自研边界**：
 
