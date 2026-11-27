@@ -1,5 +1,5 @@
 # 枢元智能体操作系统 · 和鸣服务 init 声明（与 .cfg 对等，按产品 init 框架版本二选一或并存）
-service heming_service /system/bin/sa_main /system/profile/heming_service.xml
+service heming_service /system/bin/sa_main /system/profile/9903.xml
     uid system
     gid system
     seclabel u:r:heming_service:s0
