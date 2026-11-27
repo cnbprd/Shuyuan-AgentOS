@@ -37,7 +37,14 @@ wsl/
 ├── dl/                     # wsl_update_x64.msi、ubuntu-base-22.04-amd64.tar.gz
 ├── Ubuntu-22.04/           # 导入后的发行版，ext4.vhdx 在此
 ├── bootstrap.sh            # 发行版内依赖安装（阿里云源）
-└── setup-wsl.ps1           # 启用 WSL/虚拟机平台并装内核的提权脚本
+├── setup-wsl.ps1           # 启用 WSL/虚拟机平台并装内核的提权脚本
+└── after-reboot.ps1        # 重启后一键：导入发行版 + 装依赖 + repo init
+```
+
+重启后执行（普通权限）：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File "F:\ShuyuanAgent OS\wsl\after-reboot.ps1"
 ```
 
 导入命令（管理员启用功能并重启后执行）：
