@@ -23,7 +23,10 @@ void JingzhiService::OnStart()
         HiLog::Error(LABEL, "JingzhiService Publish to samgr failed.");
         return;
     }
-    ready_ = true;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ready_ = true;
+    }
     HiLog::Info(LABEL, "JingzhiService published as SA %{public}d.", JINGZHI_SA_ID);
 }
 

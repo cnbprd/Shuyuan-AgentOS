@@ -24,7 +24,10 @@ void JianguanService::OnStart()
         HiLog::Error(LABEL, "JianguanService Publish to samgr failed.");
         return;
     }
-    ready_ = true;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ready_ = true;
+    }
     HiLog::Info(LABEL, "JianguanService published as SA %{public}d.", JIANGUAN_SA_ID);
 }
 

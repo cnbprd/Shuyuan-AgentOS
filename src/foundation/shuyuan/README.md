@@ -65,6 +65,7 @@ lingtai/
 interfaces/innerkits/include/shuyuan_common.h   # 公共错误码 + 就绪参数名常量
 init/shuyuan_boot.cfg                           # 子系统级统一启动时序（同 job 按序拉起五层）
 init/BUILD.gn                                   # 统一时序 cfg 安装目标
+sepolicy/                                       # SELinux 策略骨架（五域 type + service_contexts/file_contexts 草稿）
 tools/shuyuan_demo_client/                      # 跨 SA 串通测试客户端
 ```
 

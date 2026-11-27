@@ -84,10 +84,13 @@ src/foundation/shuyuan/
 ├── lingzhong/         # 令终 9904 任务闭环
 ├── jingzhi/            # 敬止 9905 治理审批
 ├── init/              # 子系统级统一启动时序 cfg（载阳）
+├── sepolicy/          # SELinux 策略骨架（五域 type 声明、9901–9905 映射与文件标签草稿）
 └── tools/shuyuan_demo_client/   # 跨 SA 串通测试客户端（可执行）
 ```
 
 五个部件骨架均已落地（接口 / Stub / Proxy / Service + profile / init 三件套 + GN 登记），结构同构；接口速览见 `src/foundation/shuyuan/README.md`。串通客户端与调用链判据见 [`09-跨SA调用链与测试客户端.md`](09-跨SA调用链与测试客户端.md)。
+
+SELinux 策略骨架与「缺失即静默失败」的三层判据见 `src/foundation/shuyuan/sepolicy/README.md`；其中宏名与属性名标注为待源码树核实，不可当作可直接编入的策略。
 
 阶段零环境脚本位于 `scripts/`（依赖安装、源码同步、编译入口），在 Ubuntu/WSL2 内执行，说明见 `scripts/README.md`。
 

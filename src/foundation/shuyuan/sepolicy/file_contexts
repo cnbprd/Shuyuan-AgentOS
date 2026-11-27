@@ -1,0 +1,14 @@
+# 枢元库与 profile 的文件标签草稿
+# ⚠ 待核对：右侧文件类型需在 .te 中先声明（本目录暂未声明 *_file 类型），否则策略编译报未定义类型。
+
+/system/lib64/liblingtai_service.z.so    u:object_r:lingtai_service_file:s0
+/system/lib64/libjianguan_service.z.so   u:object_r:jianguan_service_file:s0
+/system/lib64/libheming_service.z.so     u:object_r:heming_service_file:s0
+/system/lib64/liblingzhong_service.z.so  u:object_r:lingzhong_service_file:s0
+/system/lib64/libjingzhi_service.z.so    u:object_r:jingzhi_service_file:s0
+
+/system/profile/9901.xml                 u:object_r:lingtai_service_profile_file:s0
+/system/profile/9902.xml                 u:object_r:jianguan_service_profile_file:s0
+/system/profile/9903.xml                 u:object_r:heming_service_profile_file:s0
+/system/profile/9904.xml                 u:object_r:lingzhong_service_profile_file:s0
+/system/profile/9905.xml                 u:object_r:jingzhi_service_profile_file:s0

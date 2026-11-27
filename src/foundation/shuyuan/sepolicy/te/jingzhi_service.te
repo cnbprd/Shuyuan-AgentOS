@@ -1,0 +1,12 @@
+# 敬止 9905 · 治理审批域（骨架）
+# ⚠ 非成品：宏名与属性名以目标源码树 system/sepolicy 原文为准。
+# 治理域后续要读写审计记录，可能额外需要数据文件标签，待进树按实际存储路径补。
+
+type jingzhi_service, domain;
+
+# TODO 1 init → 本域启动转换（宏名待核对）
+# TODO 2 本域 → samgr 注册 SA 9905
+# TODO 3 客户端域 → 本域 IPC
+# TODO 4 服务对象标签类型是否复用本域（见 service_contexts）
+# TODO 5 审计落盘所需的文件标签与读写 allow（阶段二接入）
+# TODO 6 SA 访问属性（未核实，勿凭记忆写）

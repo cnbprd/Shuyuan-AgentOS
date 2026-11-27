@@ -27,7 +27,11 @@ void LingtaiService::OnStart()
     }
 
     // IPC 接口已可响应，置内存就绪标志；对外就绪参数置位待系统属性 API 接入。
-    ready_ = true;
+    // 加锁写入：IsReady 可能由其他 IPC 线程并发读取，避免数据竞争。
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ready_ = true;
+    }
     // 就绪里程碑：此处置位 sys.shuyuan.lingtai.ready=1。
     // 系统属性写入 API（SetParameter 等）以目标源码树 headers 为准，阶段二接入。
     HiLog::Info(LABEL, "LingtaiService published as SA %{public}d.", LINGTAI_SA_ID);

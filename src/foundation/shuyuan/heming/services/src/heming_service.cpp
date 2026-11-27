@@ -23,7 +23,10 @@ void HemingService::OnStart()
         HiLog::Error(LABEL, "HemingService Publish to samgr failed.");
         return;
     }
-    ready_ = true;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ready_ = true;
+    }
     HiLog::Info(LABEL, "HemingService published as SA %{public}d.", HEMING_SA_ID);
 }
 

@@ -23,7 +23,10 @@ void LingzhongService::OnStart()
         HiLog::Error(LABEL, "LingzhongService Publish to samgr failed.");
         return;
     }
-    ready_ = true;
+    {
+        std::lock_guard<std::mutex> lock(mutex_);
+        ready_ = true;
+    }
     HiLog::Info(LABEL, "LingzhongService published as SA %{public}d.", LINGZHONG_SA_ID);
 }
 
