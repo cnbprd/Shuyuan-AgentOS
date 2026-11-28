@@ -1,0 +1,13 @@
+{
+    "process": "jianguan_service",
+    "systemability": [
+        {
+            "name": 9902,
+            "libpath": "/system/lib64/libjianguan_service.z.so",
+            "run-on-create": true,
+            "distributed": false,
+            "dump-level": 1,
+            "bootphase": "CoreStartPhase"
+        }
+    ]
+}

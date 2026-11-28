@@ -12,7 +12,7 @@
 namespace OHOS {
 namespace Shuyuan {
 
-// 和鸣（协作机制）SA ID，与 sa_profile/9903.xml 的 <name> 严格一致。
+// 和鸣（协作机制）SA ID，与 sa_profile/9903.json 的 name 字段严格一致。
 constexpr int32_t HEMING_SA_ID = 9903;
 
 /**

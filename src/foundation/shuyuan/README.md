@@ -36,18 +36,20 @@
 
 ```
 lingtai/
-├── BUILD.gn                                  # 动态库 + 接口集合目标
-├── bundle.json                               # 部件登记（sub_component）
-├── interfaces/innerkits/include/
-│   └── i_lingtai_service.h                    # IPC 接口 + SA ID（错误码见公共头）
+├── BUILD.gn                                  # 动态库 + 接口库目标
+├── bundle.json                               # 部件登记（sub_component / inner_kits）
+├── interfaces/innerkits/
+│   ├── include/
+│   │   ├── i_lingtai_service.h                # IPC 接口 + SA ID（错误码见公共头）
+│   │   └── lingtai_service_proxy.h            # 客户端代理 + BrokerDelegator 注册
+│   └── src/
+│       └── lingtai_service_proxy.cpp          # Proxy 实现，编入 *_interfaces
 ├── services/
 │   ├── include/
 │   │   ├── lingtai_service_stub.h
-│   │   ├── lingtai_service_proxy.h
 │   │   └── lingtai_service.h
 │   ├── src/
 │   │   ├── lingtai_service_stub.cpp
-│   │   ├── lingtai_service_proxy.cpp
 │   │   └── lingtai_service.cpp
 │   └── etc/
 │       ├── BUILD.gn
@@ -56,7 +58,7 @@ lingtai/
 │           └── lingtai_service.rc
 └── sa_profile/
     ├── BUILD.gn
-    └── 9901.xml
+    └── 9901.json
 ```
 
 子系统级（与各部件目录平级）：

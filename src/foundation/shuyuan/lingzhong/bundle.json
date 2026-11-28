@@ -23,7 +23,8 @@
             "components": [
                 "safwk",
                 "ipc",
-                "hilog"
+                "hilog",
+                "lingtai"
             ],
             "third_party": []
         },
@@ -34,7 +35,16 @@
                 "//foundation/shuyuan/lingzhong/sa_profile:lingzhong_sa_profile"
             ],
             "inner_kits": [
-                "//foundation/shuyuan/lingzhong:lingzhong_interfaces"
+                {
+                    "header": {
+                        "header_base": "//foundation/shuyuan/lingzhong/interfaces/innerkits/include",
+                        "header_files": [
+                            "i_lingzhong_service.h",
+                            "lingzhong_service_proxy.h"
+                        ]
+                    },
+                    "name": "//foundation/shuyuan/lingzhong:lingzhong_interfaces"
+                }
             ],
             "test": []
         }

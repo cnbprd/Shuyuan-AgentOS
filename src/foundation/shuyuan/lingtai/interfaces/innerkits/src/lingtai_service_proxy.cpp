@@ -98,6 +98,24 @@ int32_t LingtaiServiceProxy::GetTaskStatus(const std::string& taskId, std::strin
     return err;
 }
 
+int32_t LingtaiServiceProxy::UpdateTaskStatus(const std::string& taskId, const std::string& status)
+{
+    MessageParcel data;
+    MessageParcel reply;
+    MessageOption option;
+    if (!data.WriteInterfaceToken(GetDescriptor())) {
+        return SHUYUAN_ERR_IPC;
+    }
+    data.WriteString(taskId);
+    data.WriteString(status);
+
+    int32_t error = Remote()->SendRequest(UPDATE_TASK_STATUS, data, reply, option);
+    if (error != ERR_NONE) {
+        return SHUYUAN_ERR_IPC;
+    }
+    return reply.ReadInt32();
+}
+
 int32_t LingtaiServiceProxy::IsReady(bool& ready)
 {
     MessageParcel data;

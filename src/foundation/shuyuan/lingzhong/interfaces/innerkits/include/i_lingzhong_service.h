@@ -12,7 +12,7 @@
 namespace OHOS {
 namespace Shuyuan {
 
-// 令终（任务闭环）SA ID，与 sa_profile/9904.xml 的 <name> 严格一致。
+// 令终（任务闭环）SA ID，与 sa_profile/9904.json 的 name 字段严格一致。
 constexpr int32_t LINGZHONG_SA_ID = 9904;
 
 /**
@@ -25,7 +25,8 @@ public:
         ATTACH_TASK = 1,
         FINISH_TASK = 2,
         GET_FINAL_STATE = 3,
-        IS_READY = 4,
+        GET_TASK_RESULT = 4,
+        IS_READY = 5,
     };
 
     /** 挂接一个任务实例，纳入闭环管理。 */
@@ -42,6 +43,9 @@ public:
 
     /** 查询任务终态。 */
     virtual int32_t GetTaskFinalState(const std::string& taskId, std::string& state) = 0;
+
+    /** 查询任务结果摘要（FinishTask 写入的 result）。 */
+    virtual int32_t GetTaskResult(const std::string& taskId, std::string& result) = 0;
 
     /** 查询本层是否就绪（IPC 可响应）。进程启动 ≠ 服务就绪。 */
     virtual int32_t IsReady(bool& ready) = 0;

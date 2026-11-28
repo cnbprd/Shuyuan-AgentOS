@@ -7,9 +7,9 @@
 
 #include "jingzhi_service_stub.h"
 #include "system_ability.h"
+#include <deque>
 #include <mutex>
 #include <string>
-#include <vector>
 
 namespace OHOS {
 namespace Shuyuan {
@@ -35,7 +35,7 @@ public:
 
 private:
     std::mutex mutex_;
-    std::vector<std::string> auditQueue_;
+    std::deque<std::string> auditQueue_;
     int32_t auditCount_ = 0;
     bool ready_ = false;
 };

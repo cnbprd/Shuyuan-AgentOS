@@ -45,6 +45,7 @@ void LingtaiService::OnStop()
 {
     HiLog::Info(LABEL, "LingtaiService::OnStop enter.");
     std::lock_guard<std::mutex> lock(mutex_);
+    ready_ = false;
     agentRegistry_.clear();
     taskStatus_.clear();
 }
@@ -97,6 +98,23 @@ int32_t LingtaiService::GetTaskStatus(const std::string& taskId, std::string& st
         return SHUYUAN_ERR_NOT_FOUND;
     }
     status = it->second;
+    return SHUYUAN_OK;
+}
+
+int32_t LingtaiService::UpdateTaskStatus(const std::string& taskId, const std::string& status)
+{
+    if (taskId.empty() || status.empty()) {
+        return SHUYUAN_ERR_INVALID_PARAM;
+    }
+    std::lock_guard<std::mutex> lock(mutex_);
+    auto it = taskStatus_.find(taskId);
+    if (it == taskStatus_.end()) {
+        return SHUYUAN_ERR_NOT_FOUND;
+    }
+    // 第一版只做状态字符串回写；合法状态机与越权校验在编排层接入后收紧。
+    it->second = status;
+    HiLog::Info(LABEL, "Task %{public}s status updated to %{public}s.",
+        taskId.c_str(), status.c_str());
     return SHUYUAN_OK;
 }
 

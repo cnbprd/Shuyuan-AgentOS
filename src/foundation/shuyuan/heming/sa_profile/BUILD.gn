@@ -4,7 +4,7 @@ import("//build/ohos/sa_profile/sa_profile.gni")
 
 ohos_sa_profile("heming_sa_profile") {
     sources = [
-        "9903.xml",
+        "9903.json",
     ]
     part_name = "heming"
 }

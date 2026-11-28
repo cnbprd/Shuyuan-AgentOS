@@ -34,7 +34,16 @@
                 "//foundation/shuyuan/lingtai/sa_profile:lingtai_sa_profile"
             ],
             "inner_kits": [
-                "//foundation/shuyuan/lingtai:lingtai_interfaces"
+                {
+                    "header": {
+                        "header_base": "//foundation/shuyuan/lingtai/interfaces/innerkits/include",
+                        "header_files": [
+                            "i_lingtai_service.h",
+                            "lingtai_service_proxy.h"
+                        ]
+                    },
+                    "name": "//foundation/shuyuan/lingtai:lingtai_interfaces"
+                }
             ],
             "test": []
         }

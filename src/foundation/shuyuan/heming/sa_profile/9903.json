@@ -1,0 +1,13 @@
+{
+    "process": "heming_service",
+    "systemability": [
+        {
+            "name": 9903,
+            "libpath": "/system/lib64/libheming_service.z.so",
+            "run-on-create": true,
+            "distributed": false,
+            "dump-level": 1,
+            "bootphase": "CoreStartPhase"
+        }
+    ]
+}

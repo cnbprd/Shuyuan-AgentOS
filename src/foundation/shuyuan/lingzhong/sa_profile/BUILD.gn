@@ -4,7 +4,7 @@ import("//build/ohos/sa_profile/sa_profile.gni")
 
 ohos_sa_profile("lingzhong_sa_profile") {
     sources = [
-        "9904.xml",
+        "9904.json",
     ]
     part_name = "lingzhong"
 }

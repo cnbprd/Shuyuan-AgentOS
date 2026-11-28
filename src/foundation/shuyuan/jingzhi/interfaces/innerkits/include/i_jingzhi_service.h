@@ -12,7 +12,7 @@
 namespace OHOS {
 namespace Shuyuan {
 
-// 敬止（治理/审批层）SA ID，与 sa_profile/9905.xml 的 <name> 严格一致。
+// 敬止（治理/审批层）SA ID，与 sa_profile/9905.json 的 name 字段严格一致。
 constexpr int32_t JINGZHI_SA_ID = 9905;
 
 // 授权结论：放行 / 拦截 / 转审批。
@@ -22,8 +22,9 @@ constexpr int32_t VERDICT_PENDING = 2;
 
 /**
  * 敬止对外 IPC 接口。
- * 横切所有动作出口：动作执行前请求授权，行为发生后写审计。
- * 治理层不参与编排决策，不缓存业务上下文。
+ * 动作出口前请求授权，行为发生后写审计。
+ * 当前为骨架静态策略：默认拒绝 + 显式 allow/deny/pending 前缀；
+ * 尚无调用方身份、授权令牌或下游强制校验，因此不能把本接口当作安全边界。
  */
 class IJingzhiService : public IRemoteBroker {
 public:

@@ -20,6 +20,13 @@
 #include "i_jianguan_service.h"
 #include "i_heming_service.h"
 #include "i_lingzhong_service.h"
+// Proxy 头必须显式包含：BrokerDelegator<Proxy> 的静态注册发生在这些头文件里，
+// 只包含 i_*_service.h 时 iface_cast 在客户端进程里找不到 creator。
+#include "lingtai_service_proxy.h"
+#include "jingzhi_service_proxy.h"
+#include "jianguan_service_proxy.h"
+#include "heming_service_proxy.h"
+#include "lingzhong_service_proxy.h"
 #include "system_ability_manager_client.h"
 #include "iremote_object.h"
 
@@ -83,9 +90,9 @@ int main()
     int32_t verdict = VERDICT_DENY;
     std::string reason;
     if (jingzhiProxy != nullptr) {
-        if (jingzhiProxy->PreAuthorize(agentId, "query:demo", verdict, reason) == SHUYUAN_OK) {
+        if (jingzhiProxy->PreAuthorize(agentId, "allow:query:demo", verdict, reason) == SHUYUAN_OK) {
             std::printf("[shuyuan-demo] authorize verdict=%d reason=%s\n", verdict, reason.c_str());
-            jingzhiProxy->Audit(agentId + " query:demo verdict=" + std::to_string(verdict));
+            jingzhiProxy->Audit(agentId + " allow:query:demo verdict=" + std::to_string(verdict));
         }
     } else {
         std::printf("[shuyuan-demo] jingzhi proxy null\n");
@@ -112,6 +119,10 @@ int main()
         lingzhongProxy->AttachTask(taskId);
         if (lingzhongProxy->FinishTask(taskId, "demo result", finalState) == SHUYUAN_OK) {
             std::printf("[shuyuan-demo] task closed, final=%s\n", finalState.c_str());
+            std::string result;
+            if (lingzhongProxy->GetTaskResult(taskId, result) == SHUYUAN_OK) {
+                std::printf("[shuyuan-demo] task result=%s\n", result.c_str());
+            }
         }
     } else {
         std::printf("[shuyuan-demo] lingzhong proxy null\n");

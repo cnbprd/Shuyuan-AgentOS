@@ -38,6 +38,8 @@ void JianguanService::OnStart()
 void JianguanService::OnStop()
 {
     HiLog::Info(LABEL, "JianguanService::OnStop enter.");
+    std::lock_guard<std::mutex> lock(mutex_);
+    ready_ = false;
 }
 
 int32_t JianguanService::GetSnapshot(std::string& snapshot)

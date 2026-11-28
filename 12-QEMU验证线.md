@@ -11,7 +11,7 @@
 | 2 | `wsl --import ... F:\WSL\...` | 环境已迁到项目内 `F:\ShuyuanAgent OS\wsl` | 路径不存在，导入失败 |
 | 3 | 阶段 3 失败「优先查 SELinux」；阶段 5 做 permissive 调试 | `build/config/BUILDCONFIG.gn:194-197` 未声明即 `build_selinux=false`；`qemu_loongarch64_linux_min/config.json` 未声明，且 `subsystems` 里**没有 `selinux_adapter`** | QEMU 镜像根本没有策略：`hidumper` 失败不能归因 SELinux；阶段 5 的 permissive 也无从执行 |
 | 4 | 阶段 2 只做 8 项代码/配置核对 | 还缺**产品登记**：qemu 产品 `subsystems` 现有 13 项，无 `shuyuan` | 部件不进编译/安装，产物不会出现在镜像 |
-| 5 | 期望 `liblingtai.z.so`、`/system/profile/9901.xml`（cfg 却写 `<进程名>.xml`） | 目标是 `liblingtai_service.z.so`；profile 安装保持源文件名 `990X.xml`（`sa_profile.gni` 按 basename 归档） | 核对判据写错会误判；cfg 路径错会让 `init` 找不到 profile |
+| 5 | 期望 `liblingtai.z.so`、profile 安装成 `/system/profile/9901.json` | 目标是 `liblingtai_service.z.so`；profile 安装保持源文件名 `990X.json`（`sa_profile.gni` 按 basename 归档） | 核对判据写错会误判；cfg 路径错会让 `init` 找不到 profile |
 
 ## 2. 时间线（约 6–10 个工作日，从重启后起算）
 
@@ -73,7 +73,7 @@ repo sync -c -j4
 | 4 | `ReadString/WriteString` 在当前树可用 | 查头文件与 sample |
 | 5 | `OnDump` 签名与基类匹配 | 查 `system_ability.h` |
 | 6 | 属性写入 API 与版本一致 | 查 sample |
-| 7 | **profile 安装名** | 镜像内是 `9901.xml`，cfg/rc 必须指向它 |
+| 7 | **profile 安装名** | 镜像内是 `9901.json`，cfg/rc 必须指向它 |
 | 8 | `cfg` 的 `secon` 与 `.te` 进程域 type 一致（静态核对；QEMU 无策略，不产生运行时拦截） | 文本一致即可；生效验证留真机/二轮 |
 | 9 | **`part_name` 与产品登记的 component 名一致** | `lingtai` 对 `lingtai`；`init/` 与 `demo_client/` 当前写 `shuyuan`，无对应 component，首轮不编这两个目标 |
 | 10 | **`init/` 子系统 cfg 与客户端先不进首轮镜像** | 首轮只验 9901，避免多一个未登记 part 干扰 |
@@ -91,7 +91,7 @@ repo sync -c -j4
 **判据**（不以「无报错」为准，必须看到文件）：
 
 - `out/.../system/lib64/liblingtai_service.z.so`
-- `out/.../system/profile/9901.xml`
+- `out/.../system/profile/9901.json`
 - `out/.../system/etc/init/lingtai_service.cfg`
 
 ## 6. 阶段 3：QEMU 启动 + 三验
@@ -104,10 +104,10 @@ repo sync -c -j4
 
 第 3 条失败时，QEMU 阶段**不查 SELinux**——该产品 `build_selinux=false`，`subsystems` 也无 `selinux_adapter`，镜像没有策略，也不会有 `avc: denied`。按以下四条顺序排，前一条不成立再进下一条：
 
-1. **profile 是否真进镜像**：`ls /system/profile` 找 `9901.xml`；没有就查 `part_name` 与 `ohos_sa_profile` 安装目标。
+1. **profile 是否真进镜像**：`ls /system/profile` 找 `9901.json`；没有就查 `part_name` 与 `ohos_sa_profile` 安装目标。
 2. **samgr 是否收到 `Publish`**：`hilog` 里找 `lingtai.*Publish`，区分「成功」「失败」「根本没执行」。
 3. **GN target 与 `bundle.json` 是否一致**：`sub_component` / `inner_kits` 能解析到真实 target；GN 通过但 `out/` 无产物，优先查这里。
-4. **进程名与 profile 是否一致**：`cfg`/`rc` 的 process、`9901.xml` 的 `<process>`、代码 SA ID 三处逐字对齐；进程在但列表无 9901，多半是 `Publish` 失败或 ID 不一致。
+4. **进程名与 profile 是否一致**：`cfg`/`rc` 的 process、`9901.json` 的 `process`、代码 SA ID 三处逐字对齐；进程在但列表无 9901，多半是 `Publish` 失败或 ID 不一致。
 
 > SELinux 的 `service_contexts`、`type.te` 继承、`secon` 一致性，QEMU 阶段全部标「真机/二轮待验证」，不在本阶段下结论。若三条全过，再进 IPC。
 

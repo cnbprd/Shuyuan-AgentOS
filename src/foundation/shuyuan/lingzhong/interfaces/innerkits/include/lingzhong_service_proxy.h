@@ -20,6 +20,7 @@ public:
     int32_t FinishTask(const std::string& taskId, const std::string& result,
         std::string& finalState) override;
     int32_t GetTaskFinalState(const std::string& taskId, std::string& state) override;
+    int32_t GetTaskResult(const std::string& taskId, std::string& result) override;
     int32_t IsReady(bool& ready) override;
 
 private:

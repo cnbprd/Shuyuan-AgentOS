@@ -38,6 +38,7 @@ void HemingService::OnStop()
 {
     HiLog::Info(LABEL, "HemingService::OnStop enter.");
     std::lock_guard<std::mutex> lock(mutex_);
+    ready_ = false;
     collabStatus_.clear();
 }
 

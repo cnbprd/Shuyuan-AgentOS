@@ -35,6 +35,7 @@ public:
     int32_t SubmitIntent(const std::string& intent, const std::string& contextRef,
         std::string& taskId) override;
     int32_t GetTaskStatus(const std::string& taskId, std::string& status) override;
+    int32_t UpdateTaskStatus(const std::string& taskId, const std::string& status) override;
     int32_t IsReady(bool& ready) override;
     int32_t GetBootStatus(std::string& status) override;
 

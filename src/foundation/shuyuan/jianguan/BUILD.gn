@@ -2,12 +2,13 @@
 # SPDX-License-Identifier: Apache-2.0
 import("//build/ohos.gni")
 
-# 监观 SA 动态库（感知层）。deps 目标名以实际源码树为准。
+# 监观（感知层） SA 动态库：由 init 经 sa_main 加载，向 samgr 注册为 SA 9902。
+# 服务库只包含服务实现与 Stub；Proxy 已拆到 <层>_interfaces，避免客户端为了
+# iface_cast 而链接整个服务库，把 SA 注册静态对象带进客户端进程。
 ohos_shared_library("jianguan_service") {
     sources = [
         "services/src/jianguan_service.cpp",
         "services/src/jianguan_service_stub.cpp",
-        "services/src/jianguan_service_proxy.cpp",
     ]
 
     include_dirs = [
@@ -27,12 +28,32 @@ ohos_shared_library("jianguan_service") {
     relative_install_dir = "lib64"
 }
 
-ohos_shared_library("jianguan_interfaces") {
-    sources = []
-    public_header_dirs = [
+# 对外接口库：公开接口头 + Proxy 实现，供客户端 iface_cast 使用。
+# 头文件通过 public_configs 传播；inner_kits 的 header 元数据在 bundle.json 中声明。
+config("jianguan_interfaces_public_config") {
+    include_dirs = [
         "interfaces/innerkits/include",
         "//foundation/shuyuan/interfaces/innerkits/include",
     ]
+}
+
+ohos_shared_library("jianguan_interfaces") {
+    sources = [
+        "interfaces/innerkits/src/jianguan_service_proxy.cpp",
+    ]
+
+    include_dirs = [
+        "interfaces/innerkits/include",
+        "//foundation/shuyuan/interfaces/innerkits/include",
+    ]
+
+    public_configs = [ ":jianguan_interfaces_public_config" ]
+
+    deps = [
+        "//communication/ipc:ipc_core",
+    ]
+
     part_name = "jianguan"
-    install_enable = false
+    install_enable = true
+    relative_install_dir = "lib64"
 }

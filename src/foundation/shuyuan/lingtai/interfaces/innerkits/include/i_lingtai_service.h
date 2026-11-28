@@ -12,7 +12,7 @@
 namespace OHOS {
 namespace Shuyuan {
 
-// 灵台（调度中枢）SA ID，与 sa_profile/9901.xml 的 <name> 严格一致。
+// 灵台（调度中枢）SA ID，与 sa_profile/9901.json 的 name 字段严格一致。
 constexpr int32_t LINGTAI_SA_ID = 9901;
 
 /**
@@ -22,7 +22,7 @@ constexpr int32_t LINGTAI_SA_ID = 9901;
  */
 class ILingtaiService : public IRemoteBroker {
 public:
-    // IPC 消息码，按方法顺序分配，从 1 开始。
+    // IPC 消息码。新增方法一律追加在末尾，避免与既有调用方错位。
     enum {
         REGISTER_AGENT = 1,
         UNREGISTER_AGENT = 2,
@@ -30,6 +30,7 @@ public:
         GET_TASK_STATUS = 4,
         IS_READY = 5,
         GET_BOOT_STATUS = 6,
+        UPDATE_TASK_STATUS = 7,
     };
 
     /**
@@ -56,6 +57,12 @@ public:
 
     /** 查询任务状态（状态文本：pending / running / done / closed / rejected）。 */
     virtual int32_t GetTaskStatus(const std::string& taskId, std::string& status) = 0;
+
+    /**
+     * 更新任务状态。由编排层或闭环层回写，用于让灵台的调度视图跟随真实终态。
+     * 调用方必须先具备任务归属关系；当前骨架未实现调用方鉴权，正式版需补授权校验。
+     */
+    virtual int32_t UpdateTaskStatus(const std::string& taskId, const std::string& status) = 0;
 
     /** 查询本层是否就绪（IPC 可响应）。进程启动 ≠ 服务就绪。 */
     virtual int32_t IsReady(bool& ready) = 0;

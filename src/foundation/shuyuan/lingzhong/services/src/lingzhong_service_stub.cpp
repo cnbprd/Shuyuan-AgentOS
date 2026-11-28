@@ -44,6 +44,16 @@ int32_t LingzhongServiceStub::OnRemoteRequest(uint32_t code, MessageParcel& data
             }
             return SHUYUAN_OK;
         }
+        case GET_TASK_RESULT: {
+            std::string taskId = data.ReadString();
+            std::string result;
+            int32_t err = GetTaskResult(taskId, result);
+            reply.WriteInt32(err);
+            if (err == SHUYUAN_OK) {
+                reply.WriteString(result);
+            }
+            return SHUYUAN_OK;
+        }
         case IS_READY: {
             bool ready = false;
             int32_t err = IsReady(ready);

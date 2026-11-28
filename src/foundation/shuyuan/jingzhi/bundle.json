@@ -34,7 +34,16 @@
                 "//foundation/shuyuan/jingzhi/sa_profile:jingzhi_sa_profile"
             ],
             "inner_kits": [
-                "//foundation/shuyuan/jingzhi:jingzhi_interfaces"
+                {
+                    "header": {
+                        "header_base": "//foundation/shuyuan/jingzhi/interfaces/innerkits/include",
+                        "header_files": [
+                            "i_jingzhi_service.h",
+                            "jingzhi_service_proxy.h"
+                        ]
+                    },
+                    "name": "//foundation/shuyuan/jingzhi:jingzhi_interfaces"
+                }
             ],
             "test": []
         }

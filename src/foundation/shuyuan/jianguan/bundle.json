@@ -34,7 +34,16 @@
                 "//foundation/shuyuan/jianguan/sa_profile:jianguan_sa_profile"
             ],
             "inner_kits": [
-                "//foundation/shuyuan/jianguan:jianguan_interfaces"
+                {
+                    "header": {
+                        "header_base": "//foundation/shuyuan/jianguan/interfaces/innerkits/include",
+                        "header_files": [
+                            "i_jianguan_service.h",
+                            "jianguan_service_proxy.h"
+                        ]
+                    },
+                    "name": "//foundation/shuyuan/jianguan:jianguan_interfaces"
+                }
             ],
             "test": []
         }

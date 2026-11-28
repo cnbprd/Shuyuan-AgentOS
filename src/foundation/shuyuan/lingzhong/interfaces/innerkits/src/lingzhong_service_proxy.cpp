@@ -75,6 +75,27 @@ int32_t LingzhongServiceProxy::GetTaskFinalState(const std::string& taskId, std:
     return err;
 }
 
+int32_t LingzhongServiceProxy::GetTaskResult(const std::string& taskId, std::string& result)
+{
+    MessageParcel data;
+    MessageParcel reply;
+    MessageOption option;
+    if (!data.WriteInterfaceToken(GetDescriptor())) {
+        return SHUYUAN_ERR_IPC;
+    }
+    data.WriteString(taskId);
+
+    int32_t error = Remote()->SendRequest(GET_TASK_RESULT, data, reply, option);
+    if (error != ERR_NONE) {
+        return SHUYUAN_ERR_IPC;
+    }
+    int32_t err = reply.ReadInt32();
+    if (err == SHUYUAN_OK) {
+        result = reply.ReadString();
+    }
+    return err;
+}
+
 int32_t LingzhongServiceProxy::IsReady(bool& ready)
 {
     MessageParcel data;

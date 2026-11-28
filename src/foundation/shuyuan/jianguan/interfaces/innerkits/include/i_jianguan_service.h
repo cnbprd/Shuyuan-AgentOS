@@ -12,7 +12,7 @@
 namespace OHOS {
 namespace Shuyuan {
 
-// 监观（感知层）SA ID，与 sa_profile/9902.xml 的 <name> 严格一致。
+// 监观（感知层）SA ID，与 sa_profile/9902.json 的 name 字段严格一致。
 constexpr int32_t JIANGUAN_SA_ID = 9902;
 
 /**

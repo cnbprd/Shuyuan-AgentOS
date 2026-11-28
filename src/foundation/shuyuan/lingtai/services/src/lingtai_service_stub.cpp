@@ -56,6 +56,13 @@ int32_t LingtaiServiceStub::OnRemoteRequest(uint32_t code, MessageParcel& data,
             }
             return SHUYUAN_OK;
         }
+        case UPDATE_TASK_STATUS: {
+            std::string taskId = data.ReadString();
+            std::string status = data.ReadString();
+            int32_t err = UpdateTaskStatus(taskId, status);
+            reply.WriteInt32(err);
+            return SHUYUAN_OK;
+        }
         case IS_READY: {
             bool ready = false;
             int32_t err = IsReady(ready);

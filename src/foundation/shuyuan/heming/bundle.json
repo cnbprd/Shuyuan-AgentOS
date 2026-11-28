@@ -34,7 +34,16 @@
                 "//foundation/shuyuan/heming/sa_profile:heming_sa_profile"
             ],
             "inner_kits": [
-                "//foundation/shuyuan/heming:heming_interfaces"
+                {
+                    "header": {
+                        "header_base": "//foundation/shuyuan/heming/interfaces/innerkits/include",
+                        "header_files": [
+                            "i_heming_service.h",
+                            "heming_service_proxy.h"
+                        ]
+                    },
+                    "name": "//foundation/shuyuan/heming:heming_interfaces"
+                }
             ],
             "test": []
         }

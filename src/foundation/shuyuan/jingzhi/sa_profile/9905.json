@@ -1,0 +1,13 @@
+{
+    "process": "jingzhi_service",
+    "systemability": [
+        {
+            "name": 9905,
+            "libpath": "/system/lib64/libjingzhi_service.z.so",
+            "run-on-create": true,
+            "distributed": false,
+            "dump-level": 1,
+            "bootphase": "CoreStartPhase"
+        }
+    ]
+}
